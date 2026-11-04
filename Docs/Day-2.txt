@@ -25,6 +25,13 @@ Model:
         Context window [272k, 1 Million Token] client to server 
         cache data [1mtoken] in server cache 
 
+    4. Model capbabilities: Menu what the model is trained with
+        1. Model card: OS [Huggingface, Kagel ...]
+        2. Leaderboards: how capabale they are [evaluation]
+
+
+
+
     4. NLP: Natural Language Processing 
         CLI: rm filename.txt
         NLP: [intent] 20 Languages -> language understading [gramar, tone, vovels, consonants] -> HIPPA, PII
@@ -56,3 +63,48 @@ Build:
         3. Azure MF
         4. GCP Vertex
         5. power automate AI Studio
+
+
+Business Usecase: 
+    1. k8s log analyzer -> github -> logs kind -> 
+        1. Cost
+        2. overcoimg the limitations 
+            1. context size
+            2. hallucination
+        3. level of knowledge the model should have on the subject
+
+        Haiku
+
+    2. legal solution provider -> every month 
+        1. Cost
+        2. overcoimg the limitations [context size]
+        3. level of knowledge the model should have on the subject 
+
+        opus, fable
+
+
+AI Agent [LLM, Prmopt engg [.md], RAG, Toll Caling[client, server, mcp], memory]
+    1. language translation
+        SLM translation [Input, language convertion]
+    2. real time weather or stock price 
+        LLM/SLM -> Tool Calling [fuction calling rest API]
+    3. Propitery data serving agent
+        llm -> data
+    4. non ai agent
+        Model Routing -> LB -> rule's engine [if else, switch] -> workflows
+
+
+AWS Services: accessing from python: access key, secret key
+
+import boto3
+
+client = boto3.create("bedrock") 
+
+result = client.model_invoke("mistral.mistral-7b-instruct-v0:2", prompt, config={temperature, top-k})
+
+result - Json ={
+    metadata [token consumption, message]
+    content [response]
+}
+
+more libraries [ai]
