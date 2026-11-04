@@ -1,0 +1,50 @@
+Change Windows visual effects to best performance
+
+Inside your VM:
+
+Press Win + R.
+
+Type sysdm.cpl and press Enter.
+
+Open the Advanced tab.
+
+Under Performance, click Settings.
+
+Select Adjust for best performance.
+
+Click Apply → OK.
+
+2. Change display settings
+
+Right-click Desktop → Display settings.
+
+Set resolution to your preferred display resolution.
+
+Turn off unnecessary visual effects and animations.
+
+If available, enable hardware graphics acceleration in the VM settings.Change Windows visual effects to best performance
+
+Inside your VM:
+
+Press Win + R.
+
+Type sysdm.cpl and press Enter.
+
+Open the Advanced tab.
+
+Under Performance, click Settings.
+
+Select Adjust for best performance.
+
+Click Apply → OK.
+
+2. Change display settings
+
+Right-click Desktop → Display settings.
+
+Set resolution to your preferred display resolution.
+
+Turn off unnecessary visual effects and animations.
+
+If available, enable hardware graphics acceleration in the VM settings.
+ 
