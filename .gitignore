@@ -1,1 +1,54 @@
-/.DS_Store
+# macOS
+.DS_Store
+
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+wheels/
+pip-wheel-metadata/
+.installed.cfg
+
+# Testing / coverage
+.pytest_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.hypothesis/
+
+# Type checkers / linters
+.mypy_cache/
+.ruff_cache/
+.pytype/
+.pyre/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDEs
+.vscode/
+.idea/
+
+# Logs
+*.log
