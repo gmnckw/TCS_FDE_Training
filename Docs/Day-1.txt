@@ -1,0 +1,34 @@
+what, why, how 
+
+1. AI -> process -> computer 
+    Brain -> Process
+2. Learn -> 
+    1. experience -> unsupervised learning [Algorithms -> ]
+    2. Academics -> supervised learning [Algorithms -> ]
+
+
+Devops: Scaling -> Application -> Benchmarking [load testing] -> [cpu [8], ram[16gb], io [hdd], n/w [100mbps]] -> 100 concurent users can work
+    1. Vertical -> [cpu [1000], ram[1tb], io [sdd], n/w [1000mbps]] -> 200 -> 64^2 -> x 
+    2. Horizontal -> [NFC -> [Load balancer, gateway, orcastrator, observability] ]
+                [cpu [64], ram128gb], io [sdd], n/w [1000mbps]] -> 200
+                [cpu [64], ram128gb], io [sdd], n/w [1000mbps]] -> 200
+                [cpu [64], ram128gb], io [sdd], n/w [1000mbps]] -> 200
+                [cpu [64], ram128gb], io [sdd], n/w [1000mbps]] -> 200
+                [cpu [64], ram128gb], io [sdd], n/w [1000mbps]] -> 200
+
+
+Transformer -> Distributed network architecture 
+    Horizontal -> [NFC -> [Load balancer, gateway, orcastrator, observability] ] -> LLM -> SLM [data -> internet full of data]
+                Transformers [Training + Execution] [cpu [64], ram128gb], io [sdd], n/w [1000mbps]] -> 200
+                Transforemrs [Training + Execution] [cpu [64], ram128gb], io [sdd], n/w [1000mbps]] -> 200
+                Transforemrs [Training + Execution] [cpu [64], ram128gb], io [sdd], n/w [1000mbps]] -> 200
+                Transforemrs [Training + Execution] [cpu [64], ram128gb], io [sdd], n/w [1000mbps]] -> 200
+                Transforemrs [Training + Execution] [cpu [64], ram128gb], io [sdd], n/w [1000mbps]] -> 200
+
+Lambda's: [functional programing] parallel processing -> Java -> C# -> Python -> JS
+    1. process [multiple tasks] -> 64 cpu -> prallel processing 
+        1. function -> takes n arguments and return void or one value -> [takes input and returns one value with out any global dependency]
+        2. procedure -> takes n arguments and return multiple's value
+
+
+The teacher thaught the student with a book
