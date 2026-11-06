@@ -1,0 +1,32 @@
+
+
+AI Soutions:
+   * 1. Gen AI Applications [Langchain, Antropic, Boto3, MF, autogen ...]
+     2. AI Agents [Langchain, Antropic]
+     3. Agentic AI application [Langgraph, ClaudeAgentSDK, MAF, Semanitc Kernel] 
+
+1. Langchain and langgraph: 0.48 [low level implementation] and 1.0 [high lelvel implementation, breaking changes]
+   Widely used OS framework [set of rules]:  
+
+Chain's task1 + task2
+1. language model + tool calling: get the weather details [weatherapi.com -> json -> rainy, sunny, cloudy] llm
+2. Multi model:  update the photo with background -> image + prompt update the image with sunny background 
+
+Client                                              server 
+                            request 
+Schema 
+    1. text -> prompt
+    2. messages -> chat
+        conversation
+            systemmessage [you are a helpfull chatbot to answer healthcare question]
+            humanmessage
+            aimessage
+    3. document prompt+files
+        pdf, image, audio
+            1. pagecontent -> page1, page2
+            2. metadata
+
+langchain_core
+langchain_openai 1.0 
+langchain_aws 
+langchain_ollam
