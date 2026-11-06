@@ -1,0 +1,27 @@
+# pip install boto3 
+
+import os 
+import dotenv 
+import boto3
+from dotenv import load_dotenv 
+
+# .env file  content into the program
+load_dotenv()
+
+client = boto3.client('bedrock-runtime')
+
+response = client.converse(
+    modelId= "mistral.mistral-7b-instruct-v0:2",
+    messages=[
+        {
+            "role": "user",
+            "content": [{"text": "hi, how are you?"}]
+        }
+    ],
+    inferenceConfig={"temperature": 0.7, "maxTokens": 100}    
+)
+
+print(response)
+
+
+# Frameworks langchain langgraph mf antropic claudeagentsdk [vendors]

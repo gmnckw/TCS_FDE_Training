@@ -1,0 +1,68 @@
+
+
+UV init run -> devtools
+conda
+
+
+is a and has a 
+
+class superbeing:
+
+class person(superbeing):
+
+class address:
+
+class employee(person): employee is a person
+    addr[] = address() employee has a address
+
+Python -> [javapython, cpython, c++python]
+
+JavaScriptObjectNotation -> Rest API invocations  
+
+frontend -> js -> serialisation
+var obj = {
+    name: vijay,
+    age: 10
+}
+
+obj.name
+
+AI Soutions:
+    1. Gen AI Applications
+    2. AI Agents 
+    3. Agentic AI application 
+
+1. Build an Gen AI Application:
+    application -> request [question] -> server [llm] process -> response -> applicaition 
+     1. chat bots 
+     2. validating app's
+     3. image enhancers 
+
+    application -> python -> clinet
+    llm -> aws bedrock [models] [agents, kb, gaudrail] -> server
+
+rest api's -> aws boto3 [methods to access aws services]
+
+boto3 -> s3, sqs, ec2, eks, lambdas, 
+    1. bedrock [models, agents, kb, gaudrail]
+    2. bedrockruntime [models]
+
+
+import boto3
+client = boto3.client('bedrock-runtime')
+client.invoke_model(
+    creentials, model, modelconfig, awsregion, prompt
+)
+client.converse(
+    creentials, model, modelconfig, awsregion, prompt
+)
+
+credentials: environment variable 
+   1. apikey, secretkey, region
+   2. aws cli -> login account 
+
+program -> os load_env()
+    1. python app.py 
+    2. .env files 
+    3. aws cli -> login -> AWS_ACCESS_KEY:AKIAQIZ2WIOADVYTY5UT
+    4. OS environmentvariables -> AWS_ACCESS_KEY:AKIAQIZ2WIOADVYTY5UT -> container credentials 
