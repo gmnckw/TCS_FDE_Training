@@ -1,0 +1,94 @@
+
+Tool Use: fetching reatime or propritery data 
+    0. no tool use 
+    1. server 
+    2. clinet 
+
+LLM 
+    1. tool calling feature -> invoke a tool 
+    2. where is the tool [function] -> 
+        1. client [custom]
+        2. server built in
+
+
+Creating a Tool: 
+    1. function -> @tool annotation -> 4
+    2. description of a tool * NLP
+    3. LLM register the tool -> agent 
+    4. "What is 12 plus 8?" -> prepares a function calling details [which function, what parameters]
+    5. invoke the tool , server or client 
+
+Framework [langchain]                           LLM [client tool calling] [server1, server2]
+
+1. system promt
+2. list of tools [add, sub, mul, div]
+What is 12 plus 8?                                  it preares a plan: 
+                                                    1. ok i need to call a tool called add with parameters
+                                                    2. {
+                                                        method: "add",
+                                                        parameters: {
+                                                            "a": 12,
+                                                            "b": 8,
+                                                        }
+                                                    }
+                                                    3. send it to client for execution [Tool_use message]
+4. framework -> take this object and execute -> 
+    1. system promt
+    2. list of tools [add, sub, mul, div]
+    What is 12 plus 8?
+    todo list 
+        1. after first expression the reulst should be multiply by the 5
+    result  20.                                     5. data given by tool call 
+                                                    6. {
+                                                        method: "multiply",
+                                                        parameters: {
+                                                            "a": result,
+                                                            "b": 5,
+                                                        }
+                                                    }
+                                                    7. it will processs the reult and give the response
+
+
+Problems:
+    1. incomplet description 
+    2. conflict in the description intent [tool selection]
+    3. state management [memory client]
+    4. if your application is a web application? 
+        [memory] Checkpointer
+            1. thread -> identifies the session 
+            2. [temporary] memory in framework [db, inmemory]
+
+
+
+prmopt="What is 12 plus 8 and multiply that by 5"
+
+
+Chains -> workflow or rules engine
+Agent -> which tool to call 
+
+
+Client                             server
+
+app [middlewares]
+    authentication | logging | Gateway | guardrail 
+
+
+    Gateway: 
+        rate limiting -> 1 second only 3 request
+        proxy
+        traslation
+        transofrmation 
+        authorization
+        lb
+
+    Guardrails: Responsible AI [exploit ai]
+        1. manage sensitive 
+        2. abusive
+        3. PII
+        4. hack -> owasp ai 10
+
+
+explain_chain1 = prompt | model | StrOutputParser()
+explain_chain2 = prompt | model | StrOutputParser() | prompt1 | model | JsonOutputParser()
+
+Agents -> middlewares 

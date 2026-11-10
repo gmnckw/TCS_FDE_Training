@@ -2,7 +2,7 @@
 
 AI Soutions:
    * 1. Gen AI Applications [Langchain, Antropic, Boto3, MF, autogen ...]
-     2. AI Agents [Langchain, Antropic]
+     2. AI Agents [Langchain, Antropic] [task, llm, tool calling, rag, memory, prompt templates]
      3. Agentic AI application [Langgraph, ClaudeAgentSDK, MAF, Semanitc Kernel] 
 
 1. Langchain and langgraph: 0.48 [low level implementation] and 1.0 [high lelvel implementation, breaking changes]
@@ -30,3 +30,97 @@ langchain_core
 langchain_openai 1.0 
 langchain_aws 
 langchain_ollam
+
+Prompt Enggineering: Prompt templates: dynamic 
+    Limits: context size - 272k, 1M, tokens
+            too much of data to llm: halucination
+            context -> relavent 
+
+
+it support chat bot: 
+    system instruction: you are a helpfull it support chat bot to solve the it 
+    related questions wich is defined in the context, if the question is out of the context 
+    respod i am not aware of this issue.
+
+    context: product list, service now data
+
+   * human: my internet is not working 
+
+    outputindicator: answer in 2 sentences and use polite tone to answer 
+
+Prompt techniques: 
+    oracle schema                   ->      postgres
+                                    convert the data type like int to number, char[] to varchar[]
+    table                           table
+        id -> int                       id -> number
+        name -> char[200]               name -> varchar[]
+
+prompt templates:
+    1. interpolation: 
+        target_language = englist
+        """ my language is {target_language}   """
+    2. @dataclass 
+        class valuestosubtitue:
+            target_language
+    3. RuntimeContext [anyname of the class]
+        for creating an object andsubstituing the data in template 
+    4. @dynamic_prompt 
+         """ my language is english   """ 
+
+AI Application, employees to versitle in email communications -> manger  english, employee in france 
+
+
+Middleware: 
+    client                          server llm 
+            request 
+            response
+
+
+Tool Use: realtime data and propriteroy data 
+
+    1. function to get the real or prop data 
+    2. to be as a tool
+    3. allow you llm to decide to invoke the tool 
+
+@Tool
+add
+    """add two numbers
+    arguments:
+    a: number
+    b: number
+    return:
+     number """
+    return a*b
+@Tool
+sub
+    return a/b
+@Tool
+mul
+@Tool
+div
+
+tools = [add,sub,mul,div]
+
+prompt -> 
+    HM: add 3 and 4
+    AI: 12
+
+creat_agent{
+    model 
+    tools = tools
+    promtpt= prompt
+}
+
+langchain -> 
+client
+    request             ->      tool_call 
+    do_a_tool_call
+    result              ->      llm to process final message response
+    final result
+
+
+Tool_use: 
+    clinet: 
+        propriterydata -> apikey
+    server: 
+        web search, web fetch, code execute 
