@@ -52,3 +52,4 @@ coverage.xml
 
 # Logs
 *.log
+03_langgraph/RAG/docs/

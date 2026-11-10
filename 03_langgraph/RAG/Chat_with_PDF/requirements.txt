@@ -1,0 +1,11 @@
+langgraph
+langchain
+langchain-community
+langchain-text-splitters
+langchain-ollama
+pypdf
+python-dotenv>=1.0
+streamlit>=1.62
+pillow
+langchain-chroma
+tiktoken
