@@ -1,0 +1,148 @@
+
+
+1. Memory, Prompt Cache [AI Application] - QKV Cache [LLM, SLM],
+
+Prompt: AI Application
+    system prompt - string -> getting from the template [Prompt engg]
+    context -> api, db call, rag, tools
+    input -> question
+    output -> json, xml, form 
+
+Session: 
+    1. conversation -> old message we need to manage [Session - Memory] Context window [272k, 1M token]
+        Human
+        AI message
+
+        Memory [200K] [summarization [redactaction], budget friendly [limit on tokens], [10 conversations]]
+
+1. langgraph - Agentic AI Application
+
+reactive systems -> [workflows, rules engine] : event trigger the task
+    1. claim -> email -> 
+    2. support tickets 
+
+AI: NLP -> intent -> decisions -> BDD
+
+
+Recuritment Agentic Application: 
+
+prompts: 
+    hire jfd from internal portal
+    hire jfd from monster, naukri
+
+    agentic app: 
+        services:
+            1. internal job plugin task
+            2. naukri plugin 
+            3. monster plugin
+
+1. workflow: dynamic
+
+AI Agent -> task
+Agentic AI -> goal with multiple tasks 
+
+1. prepare JD -> agent -> task [input, contributing components, output]
+2. post it in portals -> agents -> sourcing resume
+3. shortlist the candidate -> agent ->  rules
+4. to schedule the interview: [input, components, output]
+    agents: 
+        1. whatsapp
+        2. email
+        3. telephonic 
+5. conduct
+    1. teams
+    2. zoom
+6. results db -> agent -> shortlisted 
+7. give a offer 
+8. onboards -> employee, -> goal is achived 
+
+
+Agent: one or all features
+    1. llm
+    2. tools client server
+    3. RAG
+    4. short term memory
+    5. prompt templates
+    6. mcp
+    7. integrations
+
+Agentic AI: Orcastrator [orcastrate agents]: langgraph, claude agent sdk, MAF 
+
+1. Trees: graph -> 
+    1. nodes [agents, integrations]
+    2. connectors [routing between agents [workflow, conditional, routing]]
+
+RAG: Agents -> Propietary data -> Context engg -> 
+
+1. context limit [272k, 1m] -> chat with pdf -> 
+    1. reading problem [hand writtern, images, tabular data]
+    2. make your llm to work only for the given context [pdf]
+    3. managing the context size -> RAG
+        give smaller conext which is relavant cs -> 2nd sem subject -> NLP -> Clinet 
+    4. language nominicals: headache medication is : NLP
+
+    Prompt:
+    systemmessage: only work with context
+    context: pdf
+    input: which subject in 2 nd sem of cs is dificult?
+    output: answer in one work or sentence
+
+    input: summarize the pdf uploaded in one paragraph?
+
+RDBMS 
+    Data is text -> SQL
+
+Vector db
+    data is vector [series of numbers]
+
+    data -> hello word -> algorithim [embedding models] input text -> output of vecotr
+            [23,454,445,123,34,5,6,7]
+
+    RAG: 
+        RAG
+            semantic search
+        hybrid rag
+            semantic search: NLP -> intent
+            BM25 -> best match out of 25 options
+                avrage
+        graph rag -> Knowledge graph -> 
+        ....
+
+PDF - 10 page
+    docment: loaders []
+        page_content: 
+        meta data: filename, author, cd, md, size etc
+
+
+OpenAI 
+    gpt-4,5,6
+    embending models
+
+Claude
+    fabel,opus,sonet ...
+    mongodb -> voyageai model -> vectordb
+
+Amazon
+    nova ...
+    embending model 
+
+Evaluation -> Testing -> [hypothesis] 90% -> observability -> evaluation -> aiops 
+
+
+3. embendings
+    1. vector db -> embedding model x
+    2. semantic search [MMR ...] -> embedding model x 
+        matrix multiplication -> 0-1
+        chunk -> text
+    3. generating
+
+1. control: AI Application - evaluation - human testing, code testing, llm as judge
+    1. prompt engg
+    2. context
+    3. system intruction 
+    4. reduce hallucination 
+    5. limit of data 
+    6. rag retrival
+    7. scope
+    8. output indicator
+    9. temperature, top k p, model, embending

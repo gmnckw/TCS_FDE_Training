@@ -1,0 +1,9 @@
+Task 1: Create a console based chat bot where get the inputs from user and print it in console as conversation
+
+Algorithm: 
+    Step 1: get the input from the user
+    Step 2: prepare the message object    
+    Step 3: invoke the llm 
+    Step 4: print it in the console [question and answer]
+    Step 5: quit
+
