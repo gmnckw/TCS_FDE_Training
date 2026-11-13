@@ -1,0 +1,17 @@
+
+5. system prompt
+    system= "how you llm should think"
+
+6. temperature - 
+    temperature, top_k,top_p -> 5.x -> output-config={effort:"low, medium, high, max"} 
+
+    x.y.z
+    x= breaking changes
+    y= feature release
+    z= bug fixes
+
+
+7. structured data
+    output indicator = json, xml, form -> class
+
+8. streaming response

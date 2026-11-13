@@ -1,0 +1,78 @@
+corelation
+
+write a poem of 100 lines -abrubt
+
+Message(id='msg_011CgywxgEHvXkVUtbgVuUmq', container=None, 
+content=[
+    TextBlock(citations=None, text='Hello! How can I help you today?', type='text'),
+    Thinking(),
+    ToolUse(),
+], 
+diagnostics=None, model='claude-haiku-5-5', role='assistant', 
+LLM -> Content -> 
+stop_details=None, stop_reason='tool_use', stop_sequence=None, 
+type='message',
+usage=Usage(cache_creation=CacheCreation(ephemeral_1h_input_tokens=0, ephemeral_5m_input_tokens=0), cache_creation_input_tokens=0, cache_read_input_tokens=0, inference_geo='global', input_tokens=15, output_tokens=13, output_tokens_details=OutputTokensDetails(thinking_tokens=0), 
+server_tool_use=None, service_tier='standard', speed='standard'))
+
+Tools: 
+    client 
+    server [web fetch [get api], web search [searchtext="good restaurants"], code execution ...] builtin feature 
+
+
+    claude llms
+
+find the 100000 fatorial value by writing an python code -> 
+    python program -> result and give back
+
+    {
+
+    } executed -> sandbox -> response
+
+
+1. Context window > 1M
+    1. RAG 
+    2. Cache -> 
+        2m -> upload cache -> use the cache 
+    3. multiturn
+    4. compaction -> summary
+
+    Fileupload - Client sdk
+    1. huge file < 1m 
+    10 request -> latency
+    Clinet upoad the file server 10 times 
+        token -> prompt [file id] + file content = input tokens 
+
+
+1. SDK -> Antropic
+2. rest client.messages.create
+3. 3 required files [max_token, messages, model]
+4. message [user]
+5. stop-reasons -> end_turn [EOS end of sequence], max_token, tool-use 
+6. content = [text, thinking, toolmessage]
+7. tools server side tools -> sandbox
+8. fileupload to overcome latency
+
+
+
+
+list all countiers, after 5 countries add ## delimiter in the output 
+
+request [stop_sequence="##"] -> 
+
+response = stop_reason = "stop_sequence"
+
+1. cost 
+
+slm language translation -> english -> french
+2. accuracy -> evaluation -> [manual -> golden data set [input, expected output],
+                              write code to compare -> apple to apple 
+                              llm as judge -> semanitc comparision [delete a file.txt, move the file.txt to trash] ]
+3. effeciency -> 
+    extending thinking:
+        plan how to think and generate 
+
+4. get all the countries listed -> llama 7b model -> june 2023 -> xyz 2024
+    extending think -> 
+        first get the country list from provide 
+        and then give the list
