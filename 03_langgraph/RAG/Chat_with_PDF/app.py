@@ -4,13 +4,21 @@ import uuid
 
 from langchain.agents import AgentState, create_agent
 from langchain.agents.middleware import ModelRequest, before_model, dynamic_prompt
-from langchain_chroma import Chroma
+try:
+    from langchain_chroma import Chroma  # type: ignore[import-not-found]
+except ImportError:
+    from langchain_community.vectorstores import Chroma
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_core.documents import Document
 from langchain_core.messages import RemoveMessage
-from langchain_ollama import ChatOllama, OllamaEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langgraph.checkpoint.memory import InMemorySaver
+
+try:
+    from langchain_ollama import ChatOllama, OllamaEmbeddings  # type: ignore[import-not-found]
+except ImportError:
+    from langchain_community.chat_models import ChatOllama
+    from langchain_community.embeddings import OllamaEmbeddings
 from langgraph.graph.message import REMOVE_ALL_MESSAGES
 from langgraph.runtime import Runtime
 
