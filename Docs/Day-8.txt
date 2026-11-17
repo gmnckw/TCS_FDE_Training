@@ -1,0 +1,42 @@
+Question: Prompt fix in 04_tools_memory.ipynb
+
+
+Langgraph
+RAG
+
+local models:
+    model manager [runtime engine]
+        1. download models
+        2. run, stop, pause, delete
+        3. standard api - > server ->
+
+    service: 
+        1. chat application 
+        2. CLI
+        3. api endpoints [inferencing] localhost
+
+Data enginering: 
+    1. data source -> pdf, db or web site 
+    2. mongodb documents -> 
+        semantic [policies] and keywords [department, bu] 
+    3. vectordb 
+        sub document -> vecotor + columns keywords
+
+Vector db -> 
+    1. chunks [vector, original chunk data, metadata, + custom data in to columns] 
+    2. query
+
+1. update the chunks which are outdated -> 
+2. rebuild your vector db completely
+
+
+Anthropic- Certified -> CCAO-f [business], CCDV-f [Developers], CCAR-F [AI Developer], CCAR-P [Solution Architect]
+    1. Claude.ai [gen ai applition - agentic ai]
+    2. claude cowork [desktop application - personal or propritery data in your local system -> context rag]
+    3. claude code [code generation]
+        1. CLI [server class]
+        2. IDE [VS Code, Intelij, ]
+    4. claude platform [api] [C/S -> sdk  ->  hosted llm's]
+        Open Sourced Framework to build solutions
+            1. Anthropic -> llm's 
+            2. ClaudeAgentFramework 

@@ -1,0 +1,21 @@
+Build a Streamlit-based chat application using Claude / Anthropic SDK.
+    Requirements
+        Build a Streamlit chat UI
+        User enters a question/message.
+        Send it to the Claude LLM.
+        Display Claude's response in the chat interface.
+    Model selection
+        Provide an option in the sidebar to select which Claude model the user wants to interact with.
+    Effort configuration
+        Provide an option to configure the model's effort level.
+    Thinking option
+        Add a checkbox/toggle to enable or disable Thinking.
+    System instruction
+        Provide a field in the sidebar where the user can enter a System Instruction/System Prompt.
+    Build the request dynamically
+    When the user submits a message, combine:
+        Selected model
+        User message
+        System instruction
+        Effort configuration
+        Thinking configuration
