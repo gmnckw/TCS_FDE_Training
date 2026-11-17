@@ -99,14 +99,13 @@
         </email>
 
 
-12. Tool_Use -> real time data in the context
+Prompt engginering 
+    1. system -> prompt techniques
+    2. context -> relavant data for the llm to process the prompt 
+    3. input data 
+    4. output indicator
 
-13. RAG -> prop in context
 
-14. other formats of data -> image, pdf, video
 
-15. caching -> 
-
-16. file upload -> 
 
 

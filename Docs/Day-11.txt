@@ -1,0 +1,26 @@
+context engginering:
+    1. limt 
+    2. cost optimize 
+    3. ovecoming hallucination
+
+    1. Bulk -> interpolation manner {inject}  - 1M token
+    2. RAG -> [growing data, static, propritatry]
+    3. Tools -> [real time, dynamic, compaction] [client [my db, my api], server side tools [web search, web fetch, code interpreter]]
+    4. MCP Tools -> Third party product tools [figma, playwright, mcp server [utils, api's] ]
+
+        AI Application -> MCP Clinet -> Mcp Server -> Tools
+                                                        1. jira 
+                                                            api's -> keyword search 
+                                                        2. epics, stories -> semantic search
+                                                            Agent -> LLM RAG Tool-
+
+
+12. Tool_Use -> real time data in the context
+
+13. RAG -> prop in context
+
+14. other formats of data -> image, pdf, video
+
+15. caching -> 
+
+16. file upload -> 
