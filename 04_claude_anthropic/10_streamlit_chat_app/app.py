@@ -25,7 +25,6 @@ MODELS = {
     "Claude Opus 5.5": {"id": "claude-opus-5-5", "thinking_off": None, "default_effort": "medium", "fallback": True},
     "Claude Sonnet 5.5": {"id": "claude-sonnet-5-5", "thinking_off": {"type": "between_tools"}, "default_effort": "high", "fallback": True},
     "Claude Haiku 5.5": {"id": "claude-haiku-5-5", "thinking_off": {"type": "disabled"}, "default_effort": "medium", "fallback": False},
-    "Claude Fable 5.2": {"id": "claude-fable-5-2", "thinking_off": None, "default_effort": "high", "fallback": True},
 }
 
 

@@ -28,11 +28,11 @@ Open **Last request sent** in the sidebar to see the exact settings used for the
 
 | Model | What "off" sends |
 |---|---|
-| Opus 5.5, Fable 5.2 | These models always think. The app leaves out `thinking` and hides the reasoning. |
+| Opus 5.5 | This model always thinks. The app leaves out `thinking` and hides the reasoning. |
 | Sonnet 5.5 | `{"type": "between_tools"}` (effort can only be low, medium or high) |
 | Haiku 5.5 | `{"type": "disabled"}` (effort can only be low, medium or high) |
 
 ## Other behavior
 
-- **Refusal fallback:** On Opus 5.5, Sonnet 5.5 (with thinking on) and Fable 5.2, requests include `fallbacks: "default"`. If Claude declines for a safety reason, the API retries on another model.
+- **Refusal fallback:** On Opus 5.5 and Sonnet 5.5 (with thinking on), requests include `fallbacks: "default"`. If Claude declines for a safety reason, the API retries on another model.
 - **Multi-turn memory:** Earlier assistant turns are sent back with their thinking blocks. If you change the system instruction partway through a chat, those blocks are removed, because they only work with the system prompt they were created under.
