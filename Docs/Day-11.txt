@@ -15,12 +15,92 @@ context engginering:
                                                             Agent -> LLM RAG Tool-
 
 
-12. Tool_Use -> real time data in the context
+12. RAG -> prop in context
 
-13. RAG -> prop in context
+1. Retrival Augmetation, generation
+    1. document loading -> [data source -> data/feature engg] 
+        report.md 
+    2. split -> chunks 
+    3. embed -> input -> text[chunk] -> output -> vector array
+        Mongodb -> Vectordb -> voyageai.com
+    4. Vdb -> store -> [Vector array, chunk text]
+        1. cosine similarity
+        2. MMR -> max marginal retrival
+    5. Auggmentation -> question[prompt] [retrived chunk text]
+    6. generation
 
-14. other formats of data -> image, pdf, video
 
-15. caching -> 
 
-16. file upload -> 
+encoder - decoder [1 - set of words]: 
+
+
+Max Marginal reetrival -> 
+    rag -> get the diveeresified records for content generation
+
+BM25 -> Keyword -> Best Match 25 -> moske commonly used 25 words which are linked to the given keyword
+    work-> 
+        1 office
+        2 employee
+        3 department
+        4....
+
+hybrid -> rag [similarity + bm25] 
+graph [sub set of other chunks] -> 
+    Chunk 1 -> chunk 6 complete the context
+        Chunk 6 -> class person
+        Chunk 1 -> class employee(person)
+    1. Cyclic redundancy
+    2. limit the levels of the tree to travese for including in the context
+
+
+13. Tool_Use -> real time data in the context
+
+    Tools -> 
+
+    Client                              /                       server LLM 
+
+    @tool(
+        name: toolname,
+        description: of the tool,
+        parameters: input 
+    )
+    def function:
+        pass
+
+    tools = [getweatherlocal, getweatherserver]
+
+    Create(                                                     Create(
+        model, max_tokens, messages,                                     model, max_tokens, messages,
+        tools = [tools]                                                  tools = [tools],
+        tool_choice=[ {getweatherlocal}]
+    )                                                           )
+
+    Anthropic sdk -> invokes -> internal
+        Message= [{
+            user:
+            assitant:
+            tool_use:
+            tool_result:
+        }]
+
+        getweather(datetime)
+        getcurrentdateime("format")
+
+        get weather for tomorrow for tomorrow 
+            sequential:
+            1. getcurrentdateime
+            2. getweather [datetime]
+
+        get the weather forecast for 19 nov 2026 and also how manys are their between today and 19 nov 2026 date 
+            parallel
+            1. getweather(19 nov 2026)
+                [id =1, tool_use]
+            2. getcurrentdateime
+                [id =2, tool_use]
+
+            request [
+                tool_result = 1 sunny,
+                tool_result = 2 18:...     
+            ]
+
+

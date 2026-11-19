@@ -1,0 +1,38 @@
+14. MCP -> to consume thrid party tools 
+
+    1. figma, playwright -> UI UX -> wireframe -> export -> PL code 
+        1. tools -> expose 
+
+    1. Github Copilot
+    2. Claude code 
+    3. cursor ...
+
+    AI Application  -> MCP client       [stdio [bash], sse [server side events] ]          MCP server [Figma tools] 
+        1. thread [process]                                     thread [process]            1. get_design(type = react) [get the completdesing as a html content]
+                                                                                            2. 
+
+
+    Claude Code: Agentic ai application 
+        generate a todo application having front end and backend using react and spring boot [spring intializer] [opinionated view]
+
+        Agent -> scafolding create files
+            [tools [bash touch mkdir], mcps, rag, prompt, llm]
+            
+            1. give the instruction to you spring mcp -> bundle 
+            2. extract the zip file
+
+            react project->
+                desing figma
+
+
+
+
+
+
+
+
+15. other formats of data -> image, pdf, video
+
+16. caching -> 
+
+17. file upload -> 
