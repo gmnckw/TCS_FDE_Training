@@ -9,6 +9,9 @@ Instructions on Assessments:
         2. Agentic AI Solution [?] 
             vibe coding -> claude code 
 
+            Submit your coding solutions in below form***:
+            https://forms.gle/5goNYHRXcFZM34PKA
+            *** Note: push the code to personal git repo, make the repository public and share in the form
 
 Task 1: Create a console based chat bot where get the inputs from user and print it in console as conversation
 
@@ -19,3 +22,22 @@ Algorithm:
     Step 4: print it in the console [question and answer]
     Step 5: quit
 
+TASK 2: It Support chat bot 
+    1. UI Application Streamlit
+    2. implement rag
+        1. voageai embeddings and also db 
+        2. it_sector.txt
+    3. tools 
+        server web search
+        client currentdate and time 
+    4. mcp 
+        server
+            crete_ticket
+            get_status_ticket
+
+    1. requirements.txt
+    2. streamlit.py
+    3. app_implementation.py
+    4. mcp_server.py 
+
+Participants
