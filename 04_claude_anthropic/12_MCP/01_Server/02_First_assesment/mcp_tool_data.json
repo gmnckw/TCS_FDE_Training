@@ -1,0 +1,27 @@
+
+[
+  {
+    "ticket_id": "IT-101",
+    "employee": "Rahul",
+    "issue": "Laptop running slowly",
+    "description": "System takes too long to start",
+    "priority": "Medium",
+    "status": "Open"
+  },
+  {
+    "ticket_id": "IT-102",
+    "employee": "Priya",
+    "issue": "VPN not connecting",
+    "description": "Unable to connect to office VPN",
+    "priority": "High",
+    "status": "In Progress"
+  },
+  {
+    "ticket_id": "IT-103",
+    "employee": "Arun",
+    "issue": "Printer not working",
+    "description": "Printer is not detected by laptop",
+    "priority": "Low",
+    "status": "Resolved"
+  }
+]
