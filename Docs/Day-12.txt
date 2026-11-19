@@ -25,6 +25,24 @@
                 desing figma
 
 
+    A2A -> microsoft, google
+
+    MCP Server [local, server - streamable_http]
+    libraries -> FastMCP, MCPServer [framework]
+    tools
+        addition 
+        api data 
+        static information
+    
+    webserver -> localhost:3000
+
+    Rest -> resource
+
+    URL: scheme://ip:port/path to resource/resource/pathvariable
+                        /api/v1/employees/emp1
+
+
+
 
 
 
