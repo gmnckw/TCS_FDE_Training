@@ -1,0 +1,31 @@
+
+Request 1: end to end implementation of it.
+           simple mcp -> sse, stdio -> github, github actions for cicd -> release -> bundle the mcp and publish to market place 
+
+
+MCP - Enterprise levels: 
+    1. Agentic AI Application: 
+        1. derive MCP's [tools -> [resources endpoints]]
+        2. Product Define MCP's 
+
+        1. MCP Server -> version controlled -> CICD -> 
+            1. Infrastructure [sse, streamed-http] -> http 
+            2. artifacts - releases 
+            
+        [market place]
+            1. deployed mcp -> url
+            2. local mcp -> bundle
+
+    2. simple mcp -> sse, stdio -> github, github actions for cicd -> release -> bundle the mcp and publish to market place 
+
+    1. Claude code 
+        sub agent 
+        tools = [vijaydoc:gettodo]
+
+        stdio: python server.py
+            container -> python -> server.py [ipc process]
+    2. Claude cowork
+    3. github copilot
+    ..... [mcp client]
+
+

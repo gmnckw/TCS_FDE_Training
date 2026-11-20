@@ -1,0 +1,207 @@
+import os, pandas as pd, numpy as np, warnings
+import statsmodels.api as sm
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+from scipy import stats
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import make_pipeline
+from sklearn.model_selection import StratifiedKFold, cross_val_score, cross_val_predict
+from sklearn.inspection import permutation_importance
+from sklearn.metrics import roc_auc_score
+from sklearn.decomposition import PCA
+import matplotlib; matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+warnings.filterwarnings("ignore")
+
+INPUT = os.environ.get("INPUT_DIR", "/tmp")
+df = pd.read_csv(os.path.join(INPUT, "streaming.csv"))
+num = ['TotalViewingHoursLastMonth','BingeWatchingSessionsLastMonth',
+       'NumberOfUniqueTitlesWatchedLastMonth','AverageSessionDurationMinutes',
+       'CustomerServiceInteractionsLastYear','MonthlyCost']
+nice = {'TotalViewingHoursLastMonth':'Viewing hours (last mo)',
+        'BingeWatchingSessionsLastMonth':'Binge sessions (last mo)',
+        'NumberOfUniqueTitlesWatchedLastMonth':'Unique titles (last mo)',
+        'AverageSessionDurationMinutes':'Avg session length (min)',
+        'CustomerServiceInteractionsLastYear':'Service contacts (last yr)',
+        'MonthlyCost':'Monthly cost ($)'}
+
+print("="*70); print("1. UNIVARIATE TESTS (churned vs retained)"); print("="*70)
+rows=[]
+for c in num:
+    a=df.loc[df.Churned==1,c]; b=df.loc[df.Churned==0,c]
+    t,p=stats.mannwhitneyu(a,b)
+    d=(a.mean()-b.mean())/np.sqrt((a.var()+b.var())/2)
+    rows.append([nice[c], b.mean(), a.mean(), d, p])
+uni=pd.DataFrame(rows,columns=['feature','mean_retained','mean_churned','cohens_d','mwu_p'])
+print(uni.round(4).to_string(index=False))
+
+print("\nCategorical (chi-square):")
+for c in ['SubscriptionTier','TopGenre']:
+    ct=pd.crosstab(df[c],df.Churned)
+    chi2,p,dof,_=stats.chi2_contingency(ct)
+    print(f"  {c}: chi2={chi2:.2f}, dof={dof}, p={p:.4g}")
+    print(df.groupby(c)['Churned'].agg(churn_rate='mean',n='count').round(3).sort_values('churn_rate',ascending=False).to_string())
+    print()
+
+print("="*70); print("2. MULTIVARIABLE LOGISTIC REGRESSION (standardized)"); print("="*70)
+X = pd.get_dummies(df[num+['SubscriptionTier']], columns=['SubscriptionTier'], drop_first=True, dtype=float)
+# Note: MonthlyCost is perfectly determined by tier -> drop it from the model, keep tier dummies
+X = X.drop(columns=['MonthlyCost'])
+Xs = X.copy()
+for c in num[:-1]:
+    Xs[c]=(X[c]-X[c].mean())/X[c].std()
+vif=pd.DataFrame({'feature':Xs.columns,'VIF_standardized_model':[variance_inflation_factor(Xs.values,i) for i in range(Xs.shape[1])]})
+print("VIF (all predictors incl. tier dummies):"); print(vif.round(2).to_string(index=False))
+
+# Model A: all predictors
+mA = sm.Logit(df.Churned, sm.add_constant(Xs)).fit(disp=0)
+# Model B: engagement collapsed into a single PCA index (removes collinearity)
+eng_cols=['TotalViewingHoursLastMonth','BingeWatchingSessionsLastMonth','NumberOfUniqueTitlesWatchedLastMonth','AverageSessionDurationMinutes']
+Z=StandardScaler().fit_transform(df[eng_cols])
+pca=PCA(n_components=1).fit(Z)
+eng_index=pca.transform(Z).ravel()
+if np.corrcoef(eng_index, df.TotalViewingHoursLastMonth)[0,1]<0: eng_index=-eng_index
+print(f"\nPCA engagement index: explains {pca.explained_variance_ratio_[0]*100:.1f}% of variance across the 4 engagement metrics")
+print("  loadings:", {k:round(float(v),3) for k,v in zip(eng_cols, pca.components_[0])})
+Xb=pd.DataFrame({'EngagementIndex':(eng_index-eng_index.mean())/eng_index.std(),
+                 'ServiceContacts':(df.CustomerServiceInteractionsLastYear-df.CustomerServiceInteractionsLastYear.mean())/df.CustomerServiceInteractionsLastYear.std()})
+Xb=pd.concat([Xb, X[['SubscriptionTier_Premium','SubscriptionTier_Standard']]],axis=1)
+mB = sm.Logit(df.Churned, sm.add_constant(Xb)).fit(disp=0)
+print("\nModel B (engagement index + service contacts + tier), standardized coefficients:")
+res=pd.DataFrame({'coef':mB.params,'OR':np.exp(mB.params),'CI_low':np.exp(mB.conf_int()[0]),'CI_high':np.exp(mB.conf_int()[1]),'p':mB.pvalues})
+print(res.round(4).to_string())
+print(f"  pseudo R2={mB.prsquared:.3f}, AIC={mB.aic:.1f}")
+print("\nModel A (all raw metrics, standardized) coefficients:")
+resA=pd.DataFrame({'coef':mA.params,'OR_per_SD':np.exp(mA.params),'p':mA.pvalues})
+print(resA.round(4).to_string()); print(f"  pseudo R2={mA.prsquared:.3f}, AIC={mA.aic:.1f}")
+
+print("\n"+"="*70); print("3. PREDICTIVE MODEL (gradient boosting, 5x5 CV) + permutation importance"); print("="*70)
+feat = num[:-1]+['SubscriptionTier']
+Xg = pd.get_dummies(df[feat], columns=['SubscriptionTier'], dtype=float)
+y=df.Churned.values
+gb=GradientBoostingClassifier(n_estimators=200,max_depth=2,learning_rate=0.05,subsample=0.8,random_state=0)
+from sklearn.model_selection import RepeatedStratifiedKFold
+cv=RepeatedStratifiedKFold(n_splits=5,n_repeats=5,random_state=0)
+auc_gb=cross_val_score(gb,Xg,y,cv=cv,scoring='roc_auc')
+lr=make_pipeline(StandardScaler(),LogisticRegression(max_iter=1000))
+auc_lr=cross_val_score(lr,Xg,y,cv=cv,scoring='roc_auc')
+print(f"Gradient boosting CV AUC: {auc_gb.mean():.3f} +/- {auc_gb.std():.3f}")
+print(f"Logistic regression CV AUC: {auc_lr.mean():.3f} +/- {auc_lr.std():.3f}")
+gb.fit(Xg,y)
+# permutation importance on out-of-fold style: use training data with repeats (drop in AUC)
+pi=permutation_importance(gb,Xg,y,scoring='roc_auc',n_repeats=50,random_state=0)
+imp=pd.Series(pi.importances_mean,index=Xg.columns).sort_values(ascending=False)
+imp_std=pd.Series(pi.importances_std,index=Xg.columns)
+print("\nPermutation importance on training data (drop in AUC when shuffled):")
+print(pd.DataFrame({'importance':imp,'std':imp_std[imp.index]}).round(4).to_string())
+
+print("\n"+"="*70); print("4. CHURN RATE BY SEGMENT (actionable cuts)"); print("="*70)
+df['EngTercile']=pd.qcut(eng_index,3,labels=['Low','Mid','High'])
+df['ServiceBand']=pd.cut(df.CustomerServiceInteractionsLastYear,[-1,1,3,6],labels=['0-1','2-3','4-6'])
+print(df.groupby('EngTercile')['Churned'].agg(churn_rate='mean',n='count').round(3).to_string())
+print()
+print(df.groupby('ServiceBand')['Churned'].agg(churn_rate='mean',n='count').round(3).to_string())
+print()
+seg=df.groupby(['SubscriptionTier','ServiceBand'])['Churned'].agg(churn_rate='mean',n='count').round(3)
+print(seg.to_string())
+print()
+seg2=df.groupby(['EngTercile','ServiceBand'])['Churned'].agg(churn_rate='mean',n='count')
+print(seg2.round(3).unstack().to_string())
+
+# ---------- PLOT ----------
+fig=plt.figure(figsize=(16,15))
+gs=fig.add_gridspec(3,2,hspace=0.45,wspace=0.3)
+base=df.Churned.mean()
+# (a) forest plot of odds ratios (model B)
+ax=fig.add_subplot(gs[0,0])
+r=res.drop('const')
+labels={'EngagementIndex':'Engagement index (+1 SD)','ServiceContacts':'Service contacts (+1 SD)',
+        'SubscriptionTier_Premium':'Premium vs Basic','SubscriptionTier_Standard':'Standard vs Basic'}
+y_pos=np.arange(len(r))[::-1]
+colors=['#d62728' if (p<0.05 and o>1) else '#2ca02c' if (p<0.05 and o<1) else '#7f7f7f' for o,p in zip(r.OR,r.p)]
+ax.errorbar(r.OR,y_pos,xerr=[r.OR-r.CI_low,r.CI_high-r.OR],fmt='none',ecolor='#555',capsize=4)
+ax.scatter(r.OR,y_pos,c=colors,s=90,zorder=3)
+ax.axvline(1,ls='--',c='k',lw=1)
+ax.set_yticks(y_pos); ax.set_yticklabels([labels[i] for i in r.index])
+ax.set_xscale('log'); ax.set_xlabel('Odds ratio for churn (log scale, 95% CI)')
+ax.set_title('(a) Adjusted effect of each driver on churn odds',fontweight='bold',loc='left')
+# (b) permutation importance
+ax=fig.add_subplot(gs[0,1])
+impn={k:nice.get(k,k) for k in imp.index}
+ax.barh([impn[k] for k in imp.index][::-1], imp.values[::-1], xerr=imp_std[imp.index].values[::-1],color='#1f77b4',capsize=3)
+ax.set_xlabel('Drop in training AUC when feature is shuffled (50 repeats)')
+ax.set_title(f'(b) Predictive importance (GB model, AUC={auc_gb.mean():.2f})',fontweight='bold',loc='left')
+# (c) service contacts vs churn
+ax=fig.add_subplot(gs[1,0])
+g=df.groupby('CustomerServiceInteractionsLastYear')['Churned'].agg(['mean','count']).reset_index()
+bars=ax.bar(g.CustomerServiceInteractionsLastYear,g['mean']*100,color='#d62728',alpha=0.75)
+for x,m,n in zip(g.CustomerServiceInteractionsLastYear,g['mean'],g['count']):
+    ax.text(x,m*100+1.5,f'{m*100:.0f}%\n(n={n})',ha='center',fontsize=8)
+ax.axhline(base*100,ls='--',c='k',lw=1); ax.text(6.4,base*100+1,f'avg {base*100:.0f}%',fontsize=8,ha='right')
+ax.set_xlabel('Customer service interactions last year'); ax.set_ylabel('Churn rate (%)')
+ax.set_ylim(0,95)
+ax.set_title('(c) Churn rises with service contacts',fontweight='bold',loc='left')
+# (d) engagement index vs churn (binned)
+ax=fig.add_subplot(gs[1,1])
+bins=pd.qcut(eng_index,8)
+gb8=df.groupby(bins,observed=True)['Churned'].agg(['mean','count'])
+mids=np.arange(len(gb8))
+ax.plot(mids,gb8['mean']*100,'o-',c='#1f77b4',lw=2)
+for i,(m,n) in enumerate(zip(gb8['mean'],gb8['count'])):
+    ax.text(i,m*100+2.5,f'{m*100:.0f}%',ha='center',fontsize=8)
+ax.set_xticks(mids); ax.set_xticklabels([f'O{i+1}' for i in mids])
+ax.set_xlabel('Engagement index octile (O1 = least engaged, O8 = most)'); ax.set_ylabel('Churn rate (%)')
+ax.set_ylim(0,70)
+ax.set_title('(d) Churn falls as engagement rises',fontweight='bold',loc='left')
+# (e) heatmap engagement tercile x service band
+ax=fig.add_subplot(gs[2,0])
+hm=df.groupby(['EngTercile','ServiceBand'],observed=True)['Churned'].mean().unstack()*100
+im=ax.imshow(hm.values,cmap='Reds',vmin=0,vmax=80,aspect='auto')
+ax.set_xticks(range(hm.shape[1])); ax.set_xticklabels([f'{c} contacts' for c in hm.columns])
+ax.set_yticks(range(hm.shape[0])); ax.set_yticklabels([f'{r} engagement' for r in hm.index])
+cnt=df.groupby(['EngTercile','ServiceBand'],observed=True)['Churned'].size().unstack()
+for i in range(hm.shape[0]):
+    for j in range(hm.shape[1]):
+        ax.text(j,i,f'{hm.values[i,j]:.0f}%\nn={cnt.values[i,j]}',ha='center',va='center',fontsize=9,
+                color='white' if hm.values[i,j]>45 else 'black')
+plt.colorbar(im,ax=ax,label='Churn %')
+ax.set_title('(e) Churn by engagement x service contacts',fontweight='bold',loc='left')
+# (f) churn by genre and tier
+ax=fig.add_subplot(gs[2,1])
+gg=df.groupby('TopGenre')['Churned'].agg(['mean','count']).sort_values('mean')
+ax.barh(gg.index,gg['mean']*100,color=['#2ca02c' if v<base else '#d62728' for v in gg['mean']])
+for i,(m,n) in enumerate(zip(gg['mean'],gg['count'])):
+    ax.text(m*100+1,i,f'{m*100:.0f}% (n={n})',va='center',fontsize=8)
+ax.axvline(base*100,ls='--',c='k',lw=1)
+ax.set_xlabel('Churn rate (%)'); ax.set_xlim(0,70)
+ax.set_title('(f) Churn by top genre (dashed = overall avg)',fontweight='bold',loc='left')
+fig.suptitle(f'Streaming churn drivers (n=500, overall churn {base*100:.1f}%)',fontsize=15,fontweight='bold',y=0.995)
+print("\n"+"="*70); print("5. NESTED MODEL COMPARISON: is engagement independent of service contacts?"); print("="*70)
+def fit(cols):
+    Xm=sm.add_constant(pd.concat([Xb[cols]] if cols else [], axis=1) if False else Xb[cols]) if cols else None
+    return sm.Logit(df.Churned, Xm).fit(disp=0)
+tier=['SubscriptionTier_Premium','SubscriptionTier_Standard']
+models={'Tier only':tier,
+        'Tier + Engagement':tier+['EngagementIndex'],
+        'Tier + Service':tier+['ServiceContacts'],
+        'Tier + Engagement + Service':tier+['EngagementIndex','ServiceContacts']}
+fits={}
+rows=[]
+for k,cols in models.items():
+    m=sm.Logit(df.Churned, sm.add_constant(Xb[cols])).fit(disp=0); fits[k]=m
+    rows.append([k,m.prsquared,m.aic,m.llf])
+print(pd.DataFrame(rows,columns=['model','McFadden_R2','AIC','loglik']).round(4).to_string(index=False))
+lr_eng=2*(fits['Tier + Engagement + Service'].llf-fits['Tier + Service'].llf)
+lr_srv=2*(fits['Tier + Engagement + Service'].llf-fits['Tier + Engagement'].llf)
+print(f"\nLR test, engagement added to tier+service: chi2={lr_eng:.2f}, p={stats.chi2.sf(lr_eng,1):.4f}")
+print(f"LR test, service added to tier+engagement: chi2={lr_srv:.2f}, p={stats.chi2.sf(lr_srv,1):.6f}")
+r_es=np.corrcoef(Xb.EngagementIndex, Xb.ServiceContacts)[0,1]
+print(f"Correlation engagement index vs service contacts: r={r_es:.3f}")
+# Share of engagement's raw association explained by service contacts
+print(f"Shared variance (r^2) between engagement and service: {r_es**2*100:.1f}%")
+
+out=os.environ.get("OUTPUT_DIR","/tmp/churn")
+os.makedirs(out,exist_ok=True)
+fig.savefig(os.path.join(out,'churn_drivers.png'),dpi=150,bbox_inches='tight')
+print("\nSaved plot to", os.path.join(out,'churn_drivers.png'))

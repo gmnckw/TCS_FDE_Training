@@ -44,7 +44,7 @@ def greeting(name: str) -> str:
     return f"Hello, {name}!"
 
 
-mcp_app = mcp_server.streamable_http_app()
+mcp_app = mcp_server.run_stdio_async()
 
 
 @asynccontextmanager
