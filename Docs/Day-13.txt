@@ -29,3 +29,31 @@ MCP - Enterprise levels:
     ..... [mcp client]
 
 
+Prompt - > llm  -> what is quantum computing it a ..............
+                   thinking feature -> what should be the format, what kind of infomration i need to give back 
+                   plan -> thinking block -> encrypted data 
+
+
+
+    Clinet -> chat bot               
+        text
+        thinking
+
+Cache -> chat bot -> uploading a file in a session 5 mins 
+
+    request: 
+        system prompt -> cache
+        tools -> cache
+        messages -> dont cache the messages -> compaction -> 
+
+
+Antropic SDK -> MessagesAPI
+Claude_Agent_SDK
+Services -> 
+    1. claude code
+    claude cowork
+    claude cli
+    claude browser
+
+Claude code: 
+    1. cli and ide extensions [vscode]
