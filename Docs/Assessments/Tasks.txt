@@ -13,6 +13,9 @@ Instructions on Assessments:
             https://forms.gle/5goNYHRXcFZM34PKA
             *** Note: push the code to personal git repo, make the repository public and share in the form
 
+    3. Feedback: 
+        1. Feedback link: https://forms.cloud.microsoft/r/6pmntgzkfk
+
 Task 1: Create a console based chat bot where get the inputs from user and print it in console as conversation
 
 Algorithm: 
@@ -41,3 +44,4 @@ TASK 2: It Support chat bot
     4. mcp_server.py 
 
 Participants
+

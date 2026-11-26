@@ -1,0 +1,23 @@
+
+Agentic Loop -> plan -> action -> reflect -> ReAct Pattern
+responses = query(prompt, configs)
+
+response -> messages [System, Assistant, User, Tool, Result] 
+
+Loop ->
+    turns -> U, [A, T]-> conversation -> each turn is a task -> result [Goal] 
+
+Tools -> 
+   SubAgents -> SDK
+   configs = {
+        tools = [Edit, Read, write],
+        allowed_tools = [],
+        disallowed_tools = [],
+        permissions = dontAsk -> deny
+    }
+
+ReadAgent -> 
+WriteAgent-> 
+
+    supervisor: agent [permissions]
+        subagents: agent [permissions]

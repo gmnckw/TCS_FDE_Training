@@ -1,0 +1,10 @@
+{
+  "claim_id": "string (CLM-XXXX)",
+  "policy_id": "string (POL-XXXX or NULL)",
+  "claimant_name": "string",
+  "service_date": "ISO-8601 (YYYY-MM-DD)",
+  "amount_inr": "number",
+  "normalized_status": "enum [READY_FOR_PAYOUT, AWAITING_DOCS, SENIOR_REVIEW, SIU_HOLD, INTAKE_ERROR, DUPLICATE]",
+  "routing_queue": "string",
+  "triage_reason": "string"
+}

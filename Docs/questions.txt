@@ -1,0 +1,13 @@
+CloudFlare code more
+ultra mode
+
+Request 1: end to end implementation of it.
+           simple mcp -> sse, stdio -> github, github actions for cicd -> release -> bundle the mcp and publish to market place 
+
+Question: Prompt fix in 04_tools_memory.ipynb
+
+Agentic AI: Orcastrator : claude code
+    Agents: 
+        1. Inbuilt agents -> subagents
+        2. Integrate 3rd party agents ->
+            claude meetings -> agent

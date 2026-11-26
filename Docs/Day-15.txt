@@ -1,0 +1,99 @@
+
+
+Claude Code -> Code AI Assistant 
+    Artifacts
+        skills
+        subagents
+        hooks
+        mcp server connection string
+    plugin -> 
+        offline
+        marketplace
+
+Steps to create plugin and publish with private marketplace: 
+    1. create a plugin-toolkit
+        create a pulgin folder -> scope is with in the same repo 
+    2. create a new repo for the plugin 
+        metadata of the marketplace 
+        push it to repo
+    3. install the plugin user space for all project
+        claude /plugin add marketplace repourl
+        claude /plugin install pulgin---
+
+
+
+Cowork -> service agentic ai solution 
+    1. wokring with documents, presentations, excel, filesystem, 
+        automation using other applications
+            email -> 
+            slack
+            whatsapp
+
+Cowork: 
+    desktop                 cloud [anthropic server] -> [server space]
+
+FDE: 
+    Palantir: Foundry [models], AIP [integrations of models and workflow and agents], Gotham/apollo [infra]
+    
+    Forward Deployment Engg: Palantir : Principle engg [modules], FSD [Full stack developers] [frontend, backend, deveops, db] [services]
+        Application -> any
+        end to end ->  SDLC                             ->                          AIDLC 
+            1. SRS [B2B, B2C]                                                       cowork -> understanding the domain -> srs doc
+                SR Document
+            2. HLD [Architects]                                                     cowork -> cost estimate, resource planning, architectural planning 
+                feasability study
+                architecture 
+                doc's 
+                OpenAPI Specs
+                HL Documentation
+            3. LLD                                                                  Claude Code                
+                implementation -> code                                              Claude Agent Framework AI Agent
+                                  unit test cases
+            4. Testing                                                              Claude Code 
+                performance                                                         Claude Git Service [Reviewer] Repo
+                integration                                                         Evaluations of AI App's [prompt, agent, memory ......]
+                ..... approvals
+            5. Deployment                                                           Claude code
+                identify infra provision                                            Onprem, Cloud -> IAC, 
+                deploy the app                                                      k8s, aws cf, m bisep ...
+                CI CD                                                               Jenkin, Github actions  
+                                                                                    AIOps   
+            6. Maintainence                                                         claude code
+                observability                                                       Web app, infra, AI Apps
+                support                                                             L1/L2 SRE
+        individual -> 
+
+
+        web application [AI Agents] -> 
+
+        service based company -> 
+
+        product -> FDE -> pain point of a user or team or service or product 
+            1. issues -> 
+            2. time -> 
+
+        Health -> 
+            doctors -> hourly basis -> 5 patients 
+                1. review the history -> read out the MR 
+                2. write prescription -> dictate the prescription
+                3. coordination -> it is done 
+
+
+    FDE -> SDLC -> AIDLC
+        claude suite
+        copilot suite 
+        GCP suite
+        AWS suite 
+        Palantir
+
+
+Use Case: FDE [Insurance Claim -> Adjusters Role] -> 30 mins review the claim -> intial acceptaince -> need few more docs 
+
+    1. data extraction -> 
+    2. validate the data -> format -> 
+    3. major issues -> 
+        1. which can go wrong -> accepting duplicate claims -> claim id's 
+    4. minor issue -> 
+        not reviewing the policy correctly -> main policy [health insurance] + raiders [critical illness, accidental benifits]
+    5. integration -> 
+        insurance portals -> upload and download 

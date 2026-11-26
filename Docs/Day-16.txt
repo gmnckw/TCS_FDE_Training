@@ -1,0 +1,67 @@
+
+
+1. Dageorous ones: 
+    1. local -> deleting your files 
+    2. aws -> [graurd rails -> violence, pronography ]
+
+2. Cowork -> 
+3. FDE -> 
+4. Agents and Agentic AI apps -> [Claude Agent Framework]
+
+
+Time -> 15 mins per claim
+Errors -> 1000 claims 
+    1. business -> 5% 
+    2. technical -> structured 
+    3. data leakage -> 2%
+    4. sanity data -> 5%
+    5. authorization -> 6%
+    6. non availability -> 5% 
+
+Observability
+
+Data Collection: 
+    1. excels, csv 
+    2. unstructured 
+    3. db
+    4. logs
+    5. Data Lakes -> power bi, tableau, s3 -> connectors
+        1. huge
+        2. live 
+        3. archived data 
+
+    1. Bronze [logs, db, files, transactions]
+    2. silver Extract Transform [structure] Load 
+    3. gold -> data extracts 
+
+    RAG, Tools, MCP
+
+    Evaluation of a model. 
+        1. human 
+        2. code  - apple - apple to comparison code 
+        3. llm as judge -> semantic comparison [intent]
+
+    Devops: Application -> claim processing service  
+        1. CI CD
+    
+    AIOps: AI Agents and Orcastrator : MLFlow, Airflow 
+        1. Models -> [foundation, customize [slm]] policy -> trained for your model -> evaluation
+        2. prompts -> responses -> verify against [golden dataset] evaluation 
+        3. rag
+        4. mcp
+        5. tools
+        6. ai agent 
+        7. orcastrator -> ru picking rite tools, mcp, rag
+
+    prompt engg -> <tags> </tags>
+    hooks -> sesntive data management,memory management 
+
+
+Claude Agent SDK: 
+    1. Goal -> Agentic Loop -> React Pattern -> set of methods to achive the loop over here 
+        query() -> tools, rag, memory, mcp, prompt templates
+            long term memory -> persist mysql db
+            short term memory -> inmemory db
+
+
+

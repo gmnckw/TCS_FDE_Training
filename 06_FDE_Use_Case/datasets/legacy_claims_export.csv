@@ -1,0 +1,13 @@
+claim_id,policy_ref,claimant_name,service_dt,billed_amt,status_raw,adjuster_note
+CLM-1001,POL-8821,Aarav Sharma,2026-10-12,42500.00,PEND_DOC,"Inpatient stay; missing discharge summary; hospital bill attached"
+CLM-1002,pol8821,Aarav Sharma,12/10/2026,42500,Pending Docs,"Duplicate upload from portal?"
+CLM-1003,POL-9044,Priya Nair,2026-10-14,185000.50,MANUAL_REV,"High-value orthopedic implant; pre-auth PA-9910 verified"
+CLM-1004,,Rohan Verma,2026-10-15,9200.00,AUTO-OK,"Outpatient diagnostics; policy ID missing in intake"
+CLM-1005,POL-7712,Meera Krishnan,16-Oct-2026,64000.00,HOLD_FRAUD,"Provider mismatch against network roster - out of network"
+CLM-1006,POL-9044,Priya Nair,2026-10-18,12400.00,approved,"Follow-up physiotherapy session; pre-auth PA-9912 attached"
+CLM-1007,POL-8821,Vikram Rao,2026-10-19,18500.00,AUTO-OK,"Outpatient consultation and blood panel"
+CLM-1008,POL-9044,Ananya Iyer,20/10/2026,48000.00,PEND_AUTH,"Outpatient MRI; missing pre-authorization ID"
+CLM-1009,POL-7712,Karthik Menon,2026-10-21,14200.00,approved,"In-network pharmacy and dental checkup"
+CLM-1010,POL-8821,Sneha Kulkarni,22-Oct-2026,31000.00,approved,"Inpatient day-care surgery; discharge summary attached"
+CLM-1011,POL-9044,Deepak Joshi,2026-10-23,100001.00,AUTO-OK,"Boundary test: 1 rupee above 1L threshold; pre-auth PA-9940"
+CLM-1012,POL-7712,Meera Krishnan,2026-10-16,64000,HOLD_FRAUD,"Duplicate submission of CLM-1005"

@@ -1,0 +1,48 @@
+
+    
+Claude.md    
+    1. orgranization -> pushed -> windows 
+        C:\Program Files\ClaudeCode\CLAUDE.md
+        terms, mit, security
+    2. Project repo
+        team -> same standards on the project Clean Code, requirements
+    3. user -> all projects 
+        c:/user/.claude/CLAUDE.md -> 
+            ui ux -> standard mcp -> 
+    4. local dev [Claude.local.md] -> .gitignore 
+        -> local env details -> port no -> docker to connec to db 
+
+Sub Agents: 
+    model = opus
+    tools = [edit, vijaydocs]
+    prompt 
+    context
+
+Controling output from ai application: 
+
+
+Agent loop: orcastratorr -> Plan todo list -> thinking, model 
+
+    1. effort, thinking mode managed 
+    2. prompt -> 
+        all claude.md
+            folder specific
+        skill
+            specific 
+    3. Subagents 
+        js -> model=haiku mcp, tools prompt effort thinking 
+        ts -> 
+        uiux -> 
+
+Tool -> run the application -> scripts -> 
+
+1. Sub Agent -> claude code, github copilot, vijayagenticai_application[integration]
+    1. code [langchain,langgraph -> ]
+        ipc  -> python.py -> http
+    2. nocode -> configuration -> agents/.....md
+
+Agentic AI: Orcastrator : claude code
+    Agents: 
+        1. Inbuilt agents -> subagents
+        2. Integrate 3rd party agents ->
+            claude meetings -> agent

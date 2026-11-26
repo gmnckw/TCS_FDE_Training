@@ -1,0 +1,13 @@
+claim_id,expected_status,expected_queue,rationale
+CLM-1001,AWAITING_DOCS,DOCS_FOLLOWUP_QUEUE,Inpatient Silver claim missing discharge summary
+CLM-1002,DUPLICATE,DEDUP_ARCHIVE,Exact composite match with CLM-1001 after normalization
+CLM-1003,SENIOR_REVIEW,SENIOR_ADJUSTER_QUEUE,Gold claim > INR 100000 mandatory escalation
+CLM-1004,INTAKE_ERROR,INTAKE_REMEDIATION,Missing policy_ref global gate
+CLM-1005,SIU_HOLD,SIU_REVIEW,Bronze policy out-of-network provider flag
+CLM-1006,READY_FOR_PAYOUT,AUTO_PAYOUT_BATCH,Gold claim <= 50000 with valid pre-auth PA-9912
+CLM-1007,READY_FOR_PAYOUT,AUTO_PAYOUT_BATCH,Silver outpatient claim < 25000
+CLM-1008,AWAITING_DOCS,DOCS_FOLLOWUP_QUEUE,Gold claim missing pre-auth ID
+CLM-1009,READY_FOR_PAYOUT,AUTO_PAYOUT_BATCH,Bronze in-network routine claim
+CLM-1010,READY_FOR_PAYOUT,AUTO_PAYOUT_BATCH,Silver inpatient with discharge summary attached
+CLM-1011,SENIOR_REVIEW,SENIOR_ADJUSTER_QUEUE,Boundary > 100000 overrides auto-approval
+CLM-1012,DUPLICATE,DEDUP_ARCHIVE,Composite duplicate of CLM-1005
