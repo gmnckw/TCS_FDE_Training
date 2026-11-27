@@ -1,0 +1,30 @@
+# ---------------------------------------------------------------------------
+# Support Ticket Triage Assistant - Python dependencies
+#
+# From this folder (Final_triage_app):
+#   python -m venv .venv
+#   source .venv/bin/activate        # Windows: .venv\Scripts\Activate.ps1
+#   pip install -r requirements.txt
+#
+# Then start the web UI:
+#   streamlit run ui.py
+# ---------------------------------------------------------------------------
+
+# The Agent SDK itself. Ships with a bundled Claude Code binary on most
+# platforms, so no separate Claude Code install is normally needed.
+claude-agent-sdk>=0.2.140
+
+# The ticket inbox server (ticket_store_mcp.py) imports this directly.
+# Both 1.x (FastMCP) and 2.x (MCPServer) work.
+mcp>=1.23.0,<3
+
+# Loads ANTHROPIC_API_KEY from a .env file. The SDK does NOT read .env
+# automatically - config.py loads it.
+python-dotenv>=1.0.0
+
+# The web UI (ui.py). It uses width="stretch" on buttons, which needs a
+# recent release.
+streamlit>=1.50.0
+
+# Optional: LangSmith tracing (enabled via LANGSMITH_TRACING=true).
+langsmith[claude-agent-sdk]>=0.14.0

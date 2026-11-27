@@ -1,0 +1,87 @@
+{
+  "Asha Verma": {
+    "employee_id": "E-101",
+    "grade": "L2",
+    "manager": "Rahul Menon",
+    "cost_center": "CC-120",
+    "monthly_cap_usd": 2500,
+    "month_to_date_usd": 1980,
+    "preapprovals": [
+      { "id": "PA-5002", "type": "client_entertainment", "max_usd": 600, "approved_by": "Rahul Menon" }
+    ],
+    "notes": "Customer success lead."
+  },
+  "Daniel Okafor": {
+    "employee_id": "E-102",
+    "grade": "L1",
+    "manager": "Priya Shah",
+    "cost_center": "CC-210",
+    "monthly_cap_usd": 1500,
+    "month_to_date_usd": 400,
+    "preapprovals": [],
+    "notes": "Joined 2025-09-01."
+  },
+  "Mei Tan": {
+    "employee_id": "E-103",
+    "grade": "L3",
+    "manager": "Grace Liu",
+    "cost_center": "CC-300",
+    "monthly_cap_usd": 4000,
+    "month_to_date_usd": 3100,
+    "preapprovals": [
+      { "id": "PA-5001", "type": "equipment", "max_usd": 850, "approved_by": "Grace Liu" },
+      { "id": "PA-5003", "type": "travel_business_class", "max_usd": 3500, "approved_by": "VP Engineering" }
+    ],
+    "notes": "Platform engineering lead."
+  },
+  "Lucas Meyer": {
+    "employee_id": "E-104",
+    "grade": "L2",
+    "manager": "Rahul Menon",
+    "cost_center": "CC-120",
+    "monthly_cap_usd": 2500,
+    "month_to_date_usd": 600,
+    "preapprovals": [],
+    "notes": "Solutions engineer."
+  },
+  "Sara Lindqvist": {
+    "employee_id": "E-105",
+    "grade": "L1",
+    "manager": "Priya Shah",
+    "cost_center": "CC-210",
+    "monthly_cap_usd": 1500,
+    "month_to_date_usd": 1350,
+    "preapprovals": [],
+    "notes": "Works remotely from Stockholm."
+  },
+  "Omar Haddad": {
+    "employee_id": "E-106",
+    "grade": "L2",
+    "manager": "Grace Liu",
+    "cost_center": "CC-300",
+    "monthly_cap_usd": 2500,
+    "month_to_date_usd": 900,
+    "preapprovals": [],
+    "notes": "Field engineer. Travels often."
+  },
+  "Chloe Dubois": {
+    "employee_id": "E-107",
+    "grade": "L3",
+    "manager": "Grace Liu",
+    "cost_center": "CC-300",
+    "monthly_cap_usd": 4000,
+    "month_to_date_usd": 1100,
+    "preapprovals": [],
+    "notes": "Based in Paris."
+  },
+  "Ravi Iyer": {
+    "employee_id": "E-108",
+    "grade": "L1",
+    "manager": "Priya Shah",
+    "cost_center": "CC-210",
+    "monthly_cap_usd": 1500,
+    "month_to_date_usd": 320,
+    "preapprovals": [],
+    "notes": "Based in Pune."
+  }
+}

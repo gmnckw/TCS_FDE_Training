@@ -1,0 +1,74 @@
+[
+  {
+    "id": "TKT-1001",
+    "customer": "Anita Rao",
+    "plan": "Pro",
+    "channel": "email",
+    "received_at": "2026-03-02T09:14:00Z",
+    "subject": "Charged twice for March",
+    "body": "Hi, I see two charges of $49 on my card for March, both on the 1st. I only have one Pro subscription. Please refund the duplicate. My invoice numbers are INV-88213 and INV-88214."
+  },
+  {
+    "id": "TKT-1002",
+    "customer": "Marcus Webb",
+    "plan": "Free",
+    "channel": "chat",
+    "received_at": "2026-03-02T09:31:00Z",
+    "subject": "cant log in",
+    "body": "reset link never arrives. tried 4 times. checked spam. account is marcus.webb@example.com"
+  },
+  {
+    "id": "TKT-1003",
+    "customer": "Priya Nair",
+    "plan": "Enterprise",
+    "channel": "email",
+    "received_at": "2026-03-02T10:02:00Z",
+    "subject": "429s on the batch endpoint since this morning",
+    "body": "We are getting 429 Too Many Requests on POST /v2/batch starting around 06:00 UTC. Our contract says 600 req/min. We have not changed our client. This is blocking our nightly reconciliation job and we have an audit on Friday. Please escalate."
+  },
+  {
+    "id": "TKT-1004",
+    "customer": "Tom Braddock",
+    "plan": "Pro",
+    "channel": "email",
+    "received_at": "2026-03-02T10:20:00Z",
+    "subject": "How do I export all my data?",
+    "body": "I want a copy of everything in my workspace before I decide whether to renew. Is there a bulk export? CSV or JSON is fine."
+  },
+  {
+    "id": "TKT-1005",
+    "customer": "Lena Fischer",
+    "plan": "Enterprise",
+    "channel": "email",
+    "received_at": "2026-03-02T11:05:00Z",
+    "subject": "Okta SSO - users land on a blank screen",
+    "body": "We finished the SAML setup last week. About 30% of our users get a blank white screen after the Okta redirect. The rest are fine. Clearing cookies fixes it temporarily. Our IdP entity ID is https://okta.acme-corp.com/saml."
+  },
+  {
+    "id": "TKT-1006",
+    "customer": "Devon Ellis",
+    "plan": "Free",
+    "channel": "chat",
+    "received_at": "2026-03-02T11:40:00Z",
+    "subject": "is the api down??",
+    "body": "everything is timing out. is there an outage? been like this 20 min"
+  },
+  {
+    "id": "TKT-1007",
+    "customer": "Sofia Marchetti",
+    "plan": "Pro",
+    "channel": "email",
+    "received_at": "2026-03-02T12:15:00Z",
+    "subject": "Cancel my account and delete my data",
+    "body": "I want to cancel effective immediately and have all my personal data deleted under GDPR. Please confirm in writing within 30 days. I also expect a pro-rated refund for the remaining 19 days of March."
+  },
+  {
+    "id": "TKT-1008",
+    "customer": "Ray Okonkwo",
+    "plan": "Enterprise",
+    "channel": "email",
+    "received_at": "2026-03-02T13:00:00Z",
+    "subject": "URGENT: production data looks wrong after your update",
+    "body": "Since your 2026-03-01 release, our dashboard totals are off by roughly 12%. We reconciled against our own warehouse. This affects customer-facing invoices. We need someone on a call today. Our CTO is asking whether we should switch providers."
+  }
+]

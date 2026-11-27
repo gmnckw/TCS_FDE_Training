@@ -1,0 +1,82 @@
+{
+  "Anita Rao": {
+    "account_id": "ACC-4471",
+    "plan": "Pro",
+    "mrr_usd": 49,
+    "since": "2024-08-11",
+    "sso_enforced": false,
+    "contracted_rate_limit_rpm": null,
+    "open_invoices": ["INV-88213", "INV-88214"],
+    "notes": "Two identical $49 charges posted 2026-03-01, 4 minutes apart."
+  },
+  "Marcus Webb": {
+    "account_id": "ACC-9902",
+    "plan": "Free",
+    "mrr_usd": 0,
+    "since": "2026-02-27",
+    "sso_enforced": false,
+    "contracted_rate_limit_rpm": null,
+    "open_invoices": [],
+    "notes": "5 password-reset requests logged in a 12-minute window on 2026-03-02."
+  },
+  "Priya Nair": {
+    "account_id": "ACC-1120",
+    "plan": "Enterprise",
+    "mrr_usd": 7400,
+    "since": "2022-01-04",
+    "sso_enforced": true,
+    "contracted_rate_limit_rpm": 600,
+    "open_invoices": [],
+    "notes": "Applied rate limit currently reads 300 rpm on key prefix sk-live-7c2. Contract says 600."
+  },
+  "Tom Braddock": {
+    "account_id": "ACC-6613",
+    "plan": "Pro",
+    "mrr_usd": 49,
+    "since": "2025-03-19",
+    "sso_enforced": false,
+    "contracted_rate_limit_rpm": null,
+    "open_invoices": [],
+    "notes": "Renewal date 2026-03-19. No export job has ever been run on this workspace."
+  },
+  "Lena Fischer": {
+    "account_id": "ACC-3308",
+    "plan": "Enterprise",
+    "mrr_usd": 5200,
+    "since": "2023-06-02",
+    "sso_enforced": true,
+    "contracted_rate_limit_rpm": 900,
+    "open_invoices": [],
+    "notes": "SSO enforcement switched on 2026-02-24. 'Revoke all sessions' has never been run on this workspace."
+  },
+  "Devon Ellis": {
+    "account_id": "ACC-7745",
+    "plan": "Free",
+    "mrr_usd": 0,
+    "since": "2025-11-30",
+    "sso_enforced": false,
+    "contracted_rate_limit_rpm": null,
+    "open_invoices": [],
+    "notes": "No open incident on the status page at the time of writing."
+  },
+  "Sofia Marchetti": {
+    "account_id": "ACC-5027",
+    "plan": "Pro",
+    "mrr_usd": 49,
+    "since": "2025-09-12",
+    "sso_enforced": false,
+    "contracted_rate_limit_rpm": null,
+    "open_invoices": [],
+    "notes": "Monthly billing, paid through 2026-03-31."
+  },
+  "Ray Okonkwo": {
+    "account_id": "ACC-2214",
+    "plan": "Enterprise",
+    "mrr_usd": 12800,
+    "since": "2021-05-17",
+    "sso_enforced": true,
+    "contracted_rate_limit_rpm": 1200,
+    "open_invoices": [],
+    "notes": "Largest account by MRR. Renewal 2026-06-30. Named account manager: J. Okoye."
+  }
+}

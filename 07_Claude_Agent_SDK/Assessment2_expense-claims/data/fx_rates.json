@@ -1,0 +1,7 @@
+{
+  "_about": "Fixed quarterly rates. Multiply an amount in the currency by the rate to get USD.",
+  "USD": 1.0,
+  "EUR": 1.10,
+  "GBP": 1.30,
+  "INR": 0.012
+}

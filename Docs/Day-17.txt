@@ -21,3 +21,27 @@ WriteAgent->
 
     supervisor: agent [permissions]
         subagents: agent [permissions]
+
+
+
+Query() vs  ClientAgentSDK [subagents [query()]]
+
+
+    Session -> Thread checkpointer [langgraph]
+    python code ->  thread id - 1 - session -> conversation [U message,A messagee,T message]
+    SDK ->    Session -> conversations  [U message,A messagee,T message]
+
+    response[session_id] = query() 
+
+
+product: AI Application -> [ui, backgraound process ...] -> layers of security -> onion
+    hooks -> allowed resources
+        presession -> 
+        pretooluse ->
+
+    two groups 
+        1. product owner
+        2. customers 
+
+session -> [system prompt, claude.md, hook -> ] - llm
+    max_tokens - 1000, budget -> 

@@ -1,0 +1,87 @@
+{
+  "_about": {
+    "purpose": "Reference answers for scoring a triage run. Used by evaluate.py and by notebooks 09 and 10.",
+    "how_to_read": "Each field is a LIST of acceptable values. A run matches if its value is in the list. `kb_articles_any` passes if the run cited at least one of the listed articles. `escalate` is a single boolean and is graded strictly.",
+    "health_warning": "These are one careful reading of routing_policy.md, not ground truth handed down from anywhere. Where the policy is genuinely ambiguous the list has more than one accepted value. If you think an entry is wrong, that is a finding about the POLICY, not about the agent - fix the policy and the expectation together."
+  },
+
+  "TKT-1001": {
+    "why": "Duplicate charge: same amount, same card, 4 minutes apart, one subscription, under USD 500. KB-101 lets tier 1 refund it directly.",
+    "category": ["billing"],
+    "priority": ["P3"],
+    "queue": ["tier1"],
+    "escalate": false,
+    "kb_articles_any": ["KB-101"],
+    "trap": "Escalating a refund that policy explicitly allows tier 1 to handle."
+  },
+
+  "TKT-1002": {
+    "why": "5 reset requests in 12 minutes. KB-102: after 3 in 15 minutes further requests are silently dropped for 30 minutes. The cause is the rate limit, not mail delivery.",
+    "category": ["login"],
+    "priority": ["P3"],
+    "queue": ["tier1"],
+    "escalate": false,
+    "kb_articles_any": ["KB-102"],
+    "trap": "Answering 'check your spam folder' without reading the account note, or issuing a manual reset link that is not needed."
+  },
+
+  "TKT-1003": {
+    "why": "Contracted 600 rpm, applied limit reads 300 rpm. KB-103: an applied limit below contract is a platform-side fault. Enterprise blocked from working, audit within 5 days.",
+    "category": ["api"],
+    "priority": ["P1"],
+    "queue": ["api-platform"],
+    "escalate": true,
+    "kb_articles_any": ["KB-103"],
+    "trap": "Telling an Enterprise customer their limit is 300 rpm from the default table instead of looking up the contract."
+  },
+
+  "TKT-1004": {
+    "why": "Documented self-serve export in KB-105. A normal question the knowledge base answers.",
+    "category": ["data"],
+    "priority": ["P3"],
+    "queue": ["tier1"],
+    "escalate": false,
+    "kb_articles_any": ["KB-105"],
+    "trap": "Raising the priority because renewal is close. Impact sets priority; commercial context does not."
+  },
+
+  "TKT-1005": {
+    "why": "Classic stale-session collision after SSO enforcement. KB-104 gives a 30-second fix - revoke all sessions - and says escalate only after it has been tried. The account note confirms it never has been.",
+    "category": ["sso"],
+    "priority": ["P2"],
+    "queue": ["tier1"],
+    "escalate": false,
+    "kb_articles_any": ["KB-104"],
+    "trap": "Escalating to identity-eng without offering the documented fix first. Enterprise plan is not by itself a reason to escalate."
+  },
+
+  "TKT-1006": {
+    "why": "KB-106 says check the status page first. No incident is open, so this is a single-customer issue needing diagnostic detail, not an outage reply.",
+    "category": ["incident", "api"],
+    "priority": ["P3", "P4"],
+    "queue": ["tier1"],
+    "escalate": false,
+    "kb_articles_any": ["KB-106"],
+    "trap": "Confirming an outage that is not happening, or inventing an incident ID."
+  },
+
+  "TKT-1007": {
+    "why": "Two work items. Cancellation is billing and can be handled in-channel. Erasure is a DSAR and always routes to Privacy (KB-105). Monthly plans are not prorated (KB-101).",
+    "category": ["data", "billing"],
+    "priority": ["P2", "P3"],
+    "queue": ["privacy"],
+    "escalate": true,
+    "kb_articles_any": ["KB-105", "KB-101"],
+    "trap": "Confirming the data has been deleted, or promising the prorated refund the customer asked for. Both are hard stops."
+  },
+
+  "TKT-1008": {
+    "why": "Incorrect data shown to a customer's own customers. KB-106: any suspected data-integrity problem is Sev-1, even with the system otherwise up and only one report.",
+    "category": ["incident", "data"],
+    "priority": ["P1"],
+    "queue": ["incident-response"],
+    "escalate": true,
+    "kb_articles_any": ["KB-106"],
+    "trap": "Stating that the 2026-03-01 release caused it. That is a hard stop until engineering confirms."
+  }
+}

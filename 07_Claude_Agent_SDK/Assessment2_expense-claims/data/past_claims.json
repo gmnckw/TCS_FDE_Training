@@ -1,0 +1,11 @@
+[
+  { "id": "C-9001", "employee": "Daniel Okafor",  "expense_date": "2026-02-03", "vendor": "Cafe Nero",      "amount": 14.20,   "currency": "USD", "category": "meals",     "status": "approved" },
+  { "id": "C-9002", "employee": "Mei Tan",        "expense_date": "2026-02-12", "vendor": "Delta Air Lines", "amount": 640.00,  "currency": "USD", "category": "travel",    "status": "approved" },
+  { "id": "C-9003", "employee": "Asha Verma",     "expense_date": "2026-02-20", "vendor": "Hilton Berlin",   "amount": 1200.00, "currency": "USD", "category": "travel",    "status": "approved" },
+  { "id": "C-9004", "employee": "Ravi Iyer",      "expense_date": "2026-02-18", "vendor": "IRCTC",           "amount": 1450.00, "currency": "INR", "category": "travel",    "status": "approved" },
+  { "id": "C-9005", "employee": "Omar Haddad",    "expense_date": "2026-02-12", "vendor": "Marriott Austin", "amount": 215.00,  "currency": "USD", "category": "travel",    "status": "approved" },
+  { "id": "C-9006", "employee": "Lucas Meyer",    "expense_date": "2026-01-28", "vendor": "Staples",         "amount": 42.50,   "currency": "USD", "category": "equipment", "status": "approved" },
+  { "id": "C-9101", "employee": "Sara Lindqvist", "expense_date": "2026-02-10", "vendor": "OfficeHub",       "amount": 145.00,  "currency": "USD", "category": "equipment", "status": "approved" },
+  { "id": "C-9102", "employee": "Sara Lindqvist", "expense_date": "2026-02-10", "vendor": "OfficeHub",       "amount": 138.00,  "currency": "USD", "category": "equipment", "status": "approved" },
+  { "id": "C-9201", "employee": "Chloe Dubois",   "expense_date": "2026-02-05", "vendor": "Le Bistrot",      "amount": 96.00,   "currency": "EUR", "category": "meals",     "status": "approved" }
+]

@@ -1,0 +1,60 @@
+
+1. Hooks -> 
+2. Gaurdrails -> 
+3. subagents
+4. multiagent orcastration
+5. cost management
+6. build a app.
+
+1. train a model -> aws sagemaker
+1a. questions
+
+2. capstone
+
+
+Hooks -> 
+    langchain
+    code cowork -> enforce custom evaluation/validation to be done in runtime 
+
+    SDK -> Lifecycle - events -> if the hook is configured it will be handled -> business 
+
+    presessionuse -> new old -> previous conversations into to the cotext
+    pretooluse -> private folder, log, metrices -> 
+    posttooluse -> log -> verify structure 
+    presessionuse 
+
+    Guards -> secure [ (PII, GDPR) data, resource (files, actions), communication (third party communication mcp), ]
+
+    layer 0 - validations
+
+    layer 0 ->  layer 1
+    hooks   ->  gateways []
+            ->  service evaluate the data for PII
+
+
+Agent -> Agent Loop [llm, tool, mcp, rag, prompt, memory, hooks, permisions, context[size, hallucination, cost, model]]
+    1. query(tools) react pattern
+    2. clinetAgentSDK [interrupt] 
+
+
+    1. Subagent -> Enterprise -> small agent -> task limited [llm, tool, mcp, rag, prompt, memory, hooks, permisions, context[size, hallucination, cost, model]]
+    2. attach agents in your agent loop 
+        tools= [Agent]
+
+Context isolation = messages -> [S,U,T,R, SE, N]
+    parent -> calling -> Sub agent ->  parent -> context is not given ->  child context -> can decide data to shared with parent 
+
+Observability tools: [open telemetry]
+    1. langsmith -> Agents -> logs -> centralize logging server -> logging principles -> PII, not revelaning the implementations
+        AI Application 
+        Infra 
+    2. queries, data extraction, evaluation framework 
+
+
+Deploy: 
+   AI Applications:  on-perm, claude, cloud [aws,gcp,azure]
+   
+   platform.claude.com
+   aws.regions.....
+   gcp.....
+   LLM -> Claude [cache, file], Cloud Providers [Aws GCP] [DMZ region]
