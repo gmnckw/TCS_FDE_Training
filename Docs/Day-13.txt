@@ -1,4 +1,7 @@
 
+Request 1: end to end implementation of it.
+           simple mcp -> sse, stdio -> github, github actions for cicd -> release -> bundle the mcp and publish to market place 
+
 
 MCP - Enterprise levels: 
     1. Agentic AI Application: 
