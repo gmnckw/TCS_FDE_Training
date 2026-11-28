@@ -1,0 +1,16 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# local environment
+.venv/
+__pycache__/
+*.py[cod]
+
+# runtime data (created by the app; results/ and evidence/ are the committed copies)
+inbox/
+outbox/
+state/
+*.tmp
+released/

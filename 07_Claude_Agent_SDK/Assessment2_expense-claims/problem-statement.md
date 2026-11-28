@@ -186,9 +186,8 @@ Your application may also be run on claims that are not in `data/claims.json`.
   facilitator's rules on the use of AI coding assistants, and make sure you can explain every part of
   what you submit.
 
-## 7. Stretch goals (optional, up to +10)
+## 7. Stretch goals 
 
-Pick any. Each is worth up to a few bonus points, and only if the core requirements work.
 
 - A web UI (for example Streamlit) with live progress while the agent works.
 - A batch mode that reviews everything in the inbox and prints a summary table with cost.

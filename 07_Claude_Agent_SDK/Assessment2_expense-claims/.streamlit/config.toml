@@ -1,0 +1,8 @@
+# The in-app toggle (bottom-left) is the only theme switch: pin the base theme to
+# light so a dark OS/browser setting cannot make "off" look dark.
+[theme]
+base = "light"
+primaryColor = "#ff4b4b"
+
+[browser]
+gatherUsageStats = false

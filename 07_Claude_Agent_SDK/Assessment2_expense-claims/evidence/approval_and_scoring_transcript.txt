@@ -1,0 +1,98 @@
+### Stretch goal: the reply is held until a person approves it
+
+$ python -m expense_app list
+CLM-3001   reviewed  Daniel Okafor    2026-02-26     198.00 USD  Bistro 44                approve 198.00 [pending_review]
+CLM-3002   reviewed  Mei Tan          2026-02-27     412.50 USD  Trattoria Sole           approve 225.00 [pending_review]
+CLM-3003   reviewed  Asha Verma       2026-02-17     795.00 GBP  The Strand Hotel, London escalate 0.00 [pending_review]
+CLM-3004   reviewed  Lucas Meyer      2026-02-20     249.00 USD  TechMart                 needs_info 0.00 [pending_review]
+CLM-3005   reviewed  Sara Lindqvist   2026-02-10     140.00 USD  OfficeHub                escalate 0.00 [pending_review]
+CLM-3006   reviewed  Omar Haddad      2026-02-24      42.00 USD  Uber                     needs_info 0.00 [pending_review]
+CLM-3007   reviewed  Ravi Iyer        2026-02-18    1450.00 INR  IRCTC                    reject 0.00 [pending_review]
+CLM-3008   reviewed  Chloe Dubois     2026-02-28      59.00 EUR  FitLife Paris            reject 0.00 [pending_review]
+CLM-3009   reviewed  Daniel Okafor    2025-11-20      96.00 USD  DEN Airport Parking      escalate 0.00 [pending_review]
+CLM-3010   reviewed  Lucas Meyer      2026-02-19     349.50 USD  Berlin offsite           approve 300.00 [pending_review]
+CLM-4001   reviewed  Priya Nair       2026-11-20      38.00 USD  Cafe Uno                 needs_info 0.00 [pending_review]
+CLM-4002   reviewed  Omar Haddad      2026-11-18    4200.00 JPY  Tokyo Metro              escalate 0.00 [pending_review]
+CLM-4003   reviewed  Ravi Iyer        2026-11-21    9500.00 INR  Barbeque Nation          approve 114.00 [pending_review]
+CLM-4004   reviewed  Mei Tan          2026-11-24     600.00 USD  Dell                     approve 600.00 [pending_review]
+CLM-4005   reviewed  Lucas Meyer      2026-11-25      18.00 USD  City Taxi                approve 18.00 [approved]
+
+$ python -m expense_app approve CLM-3006 --by ""   (refused: missing name / note)
+Not recorded: the approver's name is required
+
+$ python -m expense_app request-changes CLM-3006 --by "Ana Ruiz"   (refused: missing name / note)
+usage: python -m expense_app request-changes [-h] --by BY --note NOTE claim_id
+python -m expense_app request-changes: error: the following arguments are required: --note
+
+$ python -m expense_app approve CLM-3006 --by "Ana Ruiz" --note "Checked against the Uber trip list"
+CLM-3006 revision 1: approved by Ana Ruiz at 2026-11-27T23:47:29Z (revision 1) - Checked against the Uber trip list
+Reply released to C:\Users\user\My_TCS_FDE_TRAINING\TCS_FDE_Training\07_Claude_Agent_SDK\Assessment2_expense-claims\released\CLM-3006.reply.md
+
+$ cat released/CLM-3006.reply.md
+<!-- CLM-3006 revision 1, approved by Ana Ruiz at 2026-11-27T23:47:29Z -->
+Hi Omar,
+
+Thank you for submitting your claim for the Uber ride from the airport to the client site in Austin on 24 February 2026.
+
+We can't review it yet because there is no receipt attached. Our policy requires a receipt for any item of $25 or more, and this ride was $42.00.
+
+Please send:
+- The Uber receipt for this ride, showing the vendor (Uber), the date (24 February 2026) and the amount ($42.00). You can download it from the Uber app or website under "Your Trips", or find it in the email Uber sent when the ride ended.
+
+Once we have the receipt, we will continue the review and a finance reviewer will make the final decision.
+
+Finance Operations
+
+$ python -m expense_app request-changes CLM-3007 --by "Ana Ruiz" --note "Mention that the original claim C-9004 was already approved."
+CLM-3007 revision 1: changes_requested by Ana Ruiz at 2026-11-27T23:47:29Z (revision 1) - Mention that the original claim C-9004 was already approved.
+Reply held back; ask the agent to revise it, e.g. python -m expense_app ask CLM-3007 "Mention that the original claim C-9004 was already approved."
+
+$ python -m expense_app show CLM-3006
+
+  Claim CLM-3006  -  revision 1  -  saved 2026-11-27T23:26:12Z
+  decision            : needs_info
+  approved_amount_usd : 0.00
+  policy_refs         : EX-204
+  flags               : missing_receipt
+  escalate_to         : none
+  reviewer notes      : Employee found: Omar Haddad, E-106, L2, cap $2,500, MTD $900, no pre-approvals. Check 1: not prohibited (business ground transport, airport to client site). Check 2: no duplicates. Check 3: filed 6 days after the expense, within the 60-day limit. Check 4: no split (only claim at Uber that day, $42.00). Check 5 SETTLES IT: $42.00 USD item is at or above the $25 receipt threshold (EX-204) and the receipt is missing -> needs_info. No instruction-like text. Steps 6-7 not reached.
+  reply approval      : approved by Ana Ruiz at 2026-11-27T23:47:29Z (revision 1) - Checked against the Uber trip list
+
+  ---- draft reply to the employee (held until a person approves it) ----
+  | Hi Omar,
+  | 
+  | Thank you for submitting your claim for the Uber ride from the airport to the client site in Austin on 24 February 2026.
+  | 
+  | We can't review it yet because there is no receipt attached. Our policy requires a receipt for any item of $25 or more, and this ride was $42.00.
+  | 
+  | Please send:
+  | - The Uber receipt for this ride, showing the vendor (Uber), the date (24 February 2026) and the amount ($42.00). You can download it from the Uber app or website under "Your Trips", or find it in the email Uber sent when the ride ended.
+  | 
+  | Once we have the receipt, we will continue the review and a finance reviewer will make the final decision.
+  | 
+  | Finance Operations
+
+
+### Stretch goal: scoring script
+
+$ python -m expense_app score
+Scoring results/ against tests\expected_samples.json
+
+claim      decision  amount  escal.  flags   refs  reply  score
+CLM-3001          1       1       1   1.00   1.00     ok   1.00
+CLM-3002          1       1       1   1.00   1.00     ok   1.00
+CLM-3003          1       1       1   1.00   1.00     ok   1.00
+CLM-3004          1       1       1   1.00   1.00     ok   1.00
+CLM-3005          1       1       1   1.00   1.00     ok   1.00
+CLM-3006          1       1       1   1.00   1.00     ok   1.00
+CLM-3007          1       1       1   1.00   1.00     ok   1.00
+CLM-3008          1       1       1   1.00   1.00     ok   1.00
+CLM-3009          1       1       1   1.00   1.00     ok   1.00
+CLM-3010          1       1       1   1.00   1.00     ok   1.00
+--------------------------------------------------------------
+mean           1.00    1.00    1.00   1.00   1.00          1.00
+
+Differences:
+  CLM-3010: also cited ['EX-201'] (not penalised)
+
+Overall 100.0% across 10 claims; 0 reply hard-stop failure(s).

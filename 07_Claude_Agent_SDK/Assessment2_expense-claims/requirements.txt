@@ -1,0 +1,16 @@
+# Expense claim reviewer - Python 3.10+
+#   python -m venv .venv
+#   .venv\Scripts\activate          (macOS/Linux: source .venv/bin/activate)
+#   pip install -r requirements.txt
+
+# The Agent SDK (ships with a bundled Claude Code CLI). Tested with 0.2.189.
+claude-agent-sdk>=0.2.140
+
+# The external stdio MCP server (expense_app/claims_mcp.py). 1.x and 2.x both work; tested with 2.3.0.
+mcp>=1.23.0,<3
+
+# Loads .env into the environment (the SDK does not read .env itself).
+python-dotenv>=1.0.0
+
+# Web UI (app.py, stretch goal). Tested with 1.67.0.
+streamlit>=1.50.0

@@ -1,0 +1,21 @@
+{
+  "claim_id": "CLM-3002",
+  "decision": "approve",
+  "approved_amount_usd": 300.0,
+  "policy_refs": [
+    "EX-201"
+  ],
+  "flags": [
+    "alcohol_excluded",
+    "over_limit"
+  ],
+  "reply_to_employee": "Hi Mei,\n\nThank you for your claim for the team dinner at Trattoria Sole on 27 February. Alcohol is not covered by the expense policy, so the $96.00 of wine and cocktails itemised on the receipt has been taken out, leaving $316.50. The policy limit for a business meal is $75 per person, which for the 4 attendees comes to $300.00.\n\nI have recommended $300.00 for this claim. A finance reviewer will make the final decision.\n\nFinance Operations",
+  "escalate_to": "none",
+  "escalation_reason": "",
+  "reimbursable_before_cap_usd": null,
+  "reviewer_notes": "Settled at step 8 (approve). Internal team meal (release celebration), not prohibited. No duplicate or split (find_related_claims). Filed 3 days after expense, not late. Receipt attached, 4 attendees named, business purpose given, alcohol itemised ($96.00). Step 6 (meal rule): $412.50 USD - $96.00 alcohol = $316.50; cap 4 x $75 = $300.00 -> reimbursable $300.00 (over_limit). Monthly cap: MTD $3,100 + $300 = $3,400 <= $4,000 (L3). No currency conversion (USD). No instruction-like text.",
+  "employee": "Mei Tan",
+  "model": "claude-opus-5-5",
+  "saved_at": "2026-11-27T23:24:40Z",
+  "revision": 1
+}

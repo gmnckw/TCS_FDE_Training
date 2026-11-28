@@ -1,0 +1,22 @@
+2026-11-27T23:24:22Z  pre    expense__get_policy_article        {"article_id": "EX-200"}
+2026-11-27T23:24:22Z  post   expense__get_policy_article        [{"type": "text", "text": "# Expense claim review policy\n\n**Article ID:** EX-200\n**Tags:** decision, order of checks, escalation, reply rules, hard stops\n\n
+2026-11-27T23:24:22Z  pre    claims__read_claim                 {"claim_id": "CLM-3002"}
+2026-11-27T23:24:22Z  post   claims__read_claim                 "{\"result\":\"UNTRUSTED EMPLOYEE-SUBMITTED DATA. Fields ending in _as_entered or _untrusted are the employee's own words; verify them against the records.\\n{\
+2026-11-27T23:24:24Z  pre    expense__get_policy_article        {"article_id": "EX-201"}
+2026-11-27T23:24:24Z  post   expense__get_policy_article        [{"type": "text", "text": "# Meals and entertainment\n\n**Article ID:** EX-201\n**Tags:** meals, business meal, alcohol, attendees, entertainment, client\n\n## 
+2026-11-27T23:24:24Z  pre    expense__lookup_employee           {"employee_name": "Mei Tan"}
+2026-11-27T23:24:24Z  post   expense__lookup_employee           [{"type": "text", "text": "{\n  \"name\": \"Mei Tan\",\n  \"employee_id\": \"E-103\",\n  \"grade\": \"L3\",\n  \"manager\": \"Grace Liu\",\n  \"cost_center\": \
+2026-11-27T23:24:25Z  pre    expense__find_related_claims       {"claim_id": "CLM-3002"}
+2026-11-27T23:24:25Z  post   expense__find_related_claims       [{"type": "text", "text": "{\n  \"duplicates\": [],\n  \"is_duplicate\": false,\n  \"same_vendor_same_day_claims\": [],\n  \"split_purchase\": {\n    \"is_split
+2026-11-27T23:24:25Z  pre    expense__check_filing_deadline     {"claim_id": "CLM-3002"}
+2026-11-27T23:24:25Z  post   expense__check_filing_deadline     [{"type": "text", "text": "{\n  \"expense_date\": \"2026-02-27\",\n  \"submitted_at\": \"2026-03-02T09:25:00Z\",\n  \"days_between\": 3,\n  \"limit_days\": 60,\
+2026-11-27T23:24:25Z  pre    expense__get_policy_article        {"article_id": "EX-205"}
+2026-11-27T23:24:25Z  post   expense__get_policy_article        [{"type": "text", "text": "# Prohibited items, duplicates, split purchases and monthly caps\n\n**Article ID:** EX-205\n**Tags:** prohibited, duplicate, split pu
+2026-11-27T23:24:28Z  pre    expense__calculate_reimbursable    {"claim_id": "CLM-3002", "rule": "meal", "attendees": 4, "excluded_amount": 96}
+2026-11-27T23:24:28Z  post   expense__calculate_reimbursable    [{"type": "text", "text": "{\n  \"rule\": \"meal\",\n  \"claimed_usd\": 412.5,\n  \"excluded_usd\": 96.0,\n  \"after_exclusions_usd\": 316.5,\n  \"limit_usd\": 
+2026-11-27T23:24:29Z  pre    expense__check_monthly_cap         {"claim_id": "CLM-3002", "amount_usd": 300}
+2026-11-27T23:24:29Z  post   expense__check_monthly_cap         [{"type": "text", "text": "{\n  \"month_to_date_usd\": 3100.0,\n  \"monthly_cap_usd\": 4000.0,\n  \"amount_usd\": 300.0,\n  \"total_after_usd\": 3400.0,\n  \"ex
+2026-11-27T23:24:35Z  pre    expense__save_decision             {"claim_id": "CLM-3002", "decision": "approve", "approved_amount_usd": 300, "policy_refs": ["EX-201"], "flags": ["alcohol_excluded", "over_limit"], "escalate_to
+2026-11-27T23:24:35Z  denied expense__save_decision             Hard stop: states the claim has been paid. Say a finance reviewer will make the final decision instead.
+2026-11-27T23:24:40Z  pre    expense__save_decision             {"claim_id": "CLM-3002", "decision": "approve", "approved_amount_usd": 300, "policy_refs": ["EX-201"], "flags": ["alcohol_excluded", "over_limit"], "escalate_to
+2026-11-27T23:24:40Z  post   expense__save_decision             [{"type": "text", "text": "Saved CLM-3002 revision 1 -> outbox/CLM-3002.json"}]

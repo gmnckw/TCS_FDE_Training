@@ -1,0 +1,18 @@
+{
+  "claim_id": "CLM-3001",
+  "decision": "approve",
+  "approved_amount_usd": 198.0,
+  "policy_refs": [
+    "EX-201"
+  ],
+  "flags": [],
+  "reply_to_employee": "Hi Daniel,\n\nThank you for your claim for the client lunch at Bistro 44 on 2026-02-26. The receipt is attached, the attendees and business purpose are clear, and the amount is within the meal limit for three people ($225.00). I have recommended $198.00 for reimbursement. A finance reviewer will make the final decision.\n\nFinance Operations",
+  "escalate_to": "none",
+  "escalation_reason": "",
+  "reimbursable_before_cap_usd": null,
+  "reviewer_notes": "Revision 2: same outcome as rev 1; policy_refs corrected (EX-200 and checks only used to rule out removed). Settled at step 8 (approve). 1 Not prohibited: client business lunch, no alcohol. 2 find_related_claims: no duplicates. 3 Filed 4 days after expense (limit 60). 4 No split (no other same-vendor same-day claims). 5 Receipt attached (>= $25); attendees named (Jim Rowe, Lena Park, Acme Corp) + employee = 3; purpose: Acme renewal; meal, not client entertainment, so no pre-approval needed. 6 calculate_reimbursable meal, 3 attendees: limit $225.00; claimed $198.00 USD, exclusions $0 -> $198.00, not over limit. 7 check_monthly_cap: MTD $400.00 + $198.00 = $598.00 <= $1,500.00 (L1). No instruction-like text.",
+  "employee": "Daniel Okafor",
+  "model": "claude-opus-5-5",
+  "saved_at": "2026-11-27T23:24:11Z",
+  "revision": 2
+}

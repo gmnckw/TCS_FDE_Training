@@ -1,0 +1,192 @@
+
+### PART A - a new claim (CLM-4004, not in the sample set): intake was done with 'submit'; now review it.
+
+================================================================
+[23:28:48Z] $ python -m expense_app show CLM-4004
+================================================================
+  (no decision saved)
+
+================================================================
+[23:28:48Z] $ python -m expense_app review CLM-4004
+================================================================
+Reviewing CLM-4004 (Mei Tan, 600.0 USD, Dell)
+  agent tool calls:
+    -> [expense] get_policy_article({"article_id": "EX-200"})
+    -> [claims] read_claim({"claim_id": "CLM-4004"})
+    -> [expense] lookup_employee({"employee_name": "Mei Tan"})
+    -> [expense] get_policy_article({"article_id": "EX-203"})
+    -> [expense] get_policy_article({"article_id": "EX-205"})
+    -> [expense] find_related_claims({"claim_id": "CLM-4004"})
+    -> [expense] check_filing_deadline({"claim_id": "CLM-4004"})
+    -> [expense] check_preapproval({"claim_id": "CLM-4004", "required_type": "equipment", "amount_usd": 600})
+    -> [expense] calculate_reimbursable({"claim_id": "CLM-4004", "rule": "actual_cost"})
+    -> [expense] get_policy_article({"article_id": "EX-206"})
+    -> [expense] check_monthly_cap({"claim_id": "CLM-4004", "amount_usd": 600})
+    -> [expense] save_decision({"claim_id": "CLM-4004", "decision": "approve", "approved_amount_usd": 600, "policy_refs": ["EX-203", "EX-2...)
+
+  [success] turns=13  tool calls=12  cost=$0.1049  model=claude-haiku-5-5,claude-opus-5-5
+
+  Claim CLM-4004  -  revision 1  -  saved 2026-11-27T23:29:08Z
+  decision            : approve
+  approved_amount_usd : 600.00
+  policy_refs         : EX-203, EX-206
+  flags               : -
+  escalate_to         : none
+  reviewer notes      : Settled at step 8 (approve). 1 Not prohibited: a monitor is equipment. 2 No duplicate. 3 Filed 3 days after the expense, within the 60-day limit. 4 No split: no other claims by this employee at Dell that day; the vendor-day total is $600.00. 5 Receipt attached. $600 falls in the EX-203 $150-$1,000 tier, so an equipment pre-approval is needed: PA-5001 is on the employee's own record, type equipment, max $850, so it covers $600 (check_preapproval valid). 6 Already in USD. Actual cost, no cap: $600.00. 7 Monthly cap: MTD $3,100 + $600 = $3,700, which is under the $4,000 cap (headroom $900). No injection text found.
+
+  ---- draft reply to the employee (not sent) ----
+  | Hi Mei,
+  | 
+  | Thank you for your claim for the 27-inch Dell monitor for the platform team on-call desk. Your receipt is attached, and the equipment pre-approval PA-5001 is on your record and covers the purchase. I have recommended reimbursement of $600.00 USD. A finance reviewer will make the final decision. You don't need to do anything else for now.
+  | 
+  | Finance Operations
+
+
+### The review process has exited. Saved session id for CLM-4004:
+{'session_id': '9b81330e-b668-4137-8805-29687492d93e', 'updated_at': '2026-11-27T23:29:13Z'}
+
+================================================================
+[23:29:15Z] $ python -m expense_app ask CLM-4004 Why did you accept the pre-approval, and how much room is left under her monthly cap?
+================================================================
+Resuming the conversation for CLM-4004 (session 9b81330e...)
+
+>>> Why did you accept the pre-approval, and how much room is left under her monthly cap?
+
+<<< **Why I accepted the pre-approval**
+    
+    I didn't rely on the claim. The claim names PA-5001 and says "pre-approved by my manager," but I checked that against Mei's employee record. Under EX-206, a pre-approval counts only if three things are true, and PA-5001 meets all of them:
+    
+    1. **It's on her own record.** PA-5001 is listed under Mei Tan (E-103), approved by her manager, Grace Liu.
+    2. **It's the right type.** A $600 purchase falls in the $150–$1,000 equipment band (EX-203), which needs an `equipment` pre-approval. PA-5001 is type `equipment`.
+    3. **It covers the amount.** Its limit is $850, and the claim is $600.
+    
+    The pre-approval check confirmed it as valid on all three points. Her other pre-approval, PA-5003, is for business-class travel, so it doesn't apply here.
+    
+    **Room under her monthly cap**
+    
+    - Her cap is $4,000 (grade L3), and she has $3,100 approved so far this month.
+    - Before this claim she had $900 of room.
+    - With this claim's $600, her month's total would be $3,700.
+    - That leaves **$300** for the rest of the month, if you approve it.
+    
+    The cap tool returned the $900 and $3,700 figures. The $300 is $4,000 minus $3,700. These answers don't change anything, so I haven't re-saved: the saved decision is still revision 1, approving $600.00.
+
+  [success] turns=1  tool calls=0  cost=$0.1266  model=claude-haiku-5-5,claude-opus-5-5
+
+### FULL RESTART: the process above has exited. Every command is a brand-new Python process (new PID below), so the agent's memory can only come from the resumed SDK session.
+new process pid 11256
+
+================================================================
+[23:29:28Z] $ python -m expense_app ask CLM-4004 Remind me which claim this is and what you decided. What would have happened if the monitor had cost 900 dollars?
+================================================================
+Resuming the conversation for CLM-4004 (session 9b81330e...)
+
+>>> Remind me which claim this is and what you decided. What would have happened if the monitor had cost 900 dollars?
+    -> [expense] check_preapproval({"claim_id": "CLM-4004", "required_type": "equipment", "amount_usd": 900})
+
+<<< **This claim:** CLM-4004 is Mei Tan's claim for a $600.00 Dell monitor for the platform team on-call desk, bought on 2026-11-24. I recommended approving the full $600.00 with no flags. It's saved as revision 1 and is waiting for your final decision.
+    
+    **If the monitor had cost $900:** the outcome would have been **needs_info** rather than approve, because PA-5001 wouldn't cover it.
+    
+    - **The early checks** (allowed item, duplicate, late filing, split purchase) would have come out the same.
+    - **The pre-approval check would have failed.** $900 is still in the $150–$1,000 band, so it still needs an equipment pre-approval. I re-ran the check at $900: PA-5001 is on her record, but its $850 limit is below $900, so it isn't valid for that amount (EX-206).
+    - **The review would have stopped there.** The pre-approval check comes before the amount and monthly cap checks, so neither would have been reached.
+    - **The saved decision would have been:** needs_info, $0, flag `invalid_preapproval`, policy articles EX-203 and EX-206, no escalation.
+    - **The reply to Mei** would have said her pre-approval doesn't cover the full amount. It would have asked her to send an equipment pre-approval from her manager covering at least $900, after which the claim could be reviewed again.
+    
+    The real claim is $600, so nothing changes and I haven't re-saved.
+
+  [success] turns=2  tool calls=1  cost=$0.1589  model=claude-haiku-5-5,claude-opus-5-5
+
+### PART B - a follow-up that CHANGES the decision, after a restart (CLM-3002 was reviewed in the batch run).
+
+================================================================
+[23:30:04Z] $ python -m expense_app show CLM-3002
+================================================================
+
+  Claim CLM-3002  -  revision 1  -  saved 2026-11-27T23:24:40Z
+  decision            : approve
+  approved_amount_usd : 300.00
+  policy_refs         : EX-201
+  flags               : alcohol_excluded, over_limit
+  escalate_to         : none
+  reviewer notes      : Settled at step 8 (approve). Internal team meal (release celebration), not prohibited. No duplicate or split (find_related_claims). Filed 3 days after expense, not late. Receipt attached, 4 attendees named, business purpose given, alcohol itemised ($96.00). Step 6 (meal rule): $412.50 USD - $96.00 alcohol = $316.50; cap 4 x $75 = $300.00 -> reimbursable $300.00 (over_limit). Monthly cap: MTD $3,100 + $300 = $3,400 <= $4,000 (L3). No currency conversion (USD). No instruction-like text.
+
+  ---- draft reply to the employee (not sent) ----
+  | Hi Mei,
+  | 
+  | Thank you for your claim for the team dinner at Trattoria Sole on 27 February. Alcohol is not covered by the expense policy, so the $96.00 of wine and cocktails itemised on the receipt has been taken out, leaving $316.50. The policy limit for a business meal is $75 per person, which for the 4 attendees comes to $300.00.
+  | 
+  | I have recommended $300.00 for this claim. A finance reviewer will make the final decision.
+  | 
+  | Finance Operations
+
+
+================================================================
+[23:30:05Z] $ python -m expense_app ask CLM-3002 Why was the amount reduced?
+================================================================
+Resuming the conversation for CLM-3002 (session a562e3c8...)
+
+>>> Why was the amount reduced?
+
+<<< The claim was for $412.50, and two rules from EX-201 brought it down to $300.00:
+    
+    1. **Alcohol taken out ($96.00):** Alcohol is never reimbursable. The receipt lists $96.00 of wine and cocktails separately, so that amount comes off first. That leaves $316.50.
+    2. **Per-person meal limit (another $16.50):** Business meals are capped at $75 per person, counting the employee. With 4 attendees (Mei, Jo Park, Kim Alvarez and Raj Patel) the limit is 4 × $75 = $300.00. The policy applies this limit after the alcohol is removed. $316.50 is over the limit, so the amount is capped at $300.00.
+    
+    The calculation tool produced these figures, and the reduction is recorded with the `alcohol_excluded` and `over_limit` flags. The monthly cap didn't change anything: $3,100 already approved this month plus $300 is $3,400, which is within her $4,000 cap.
+    
+    The saved decision stays as it is.
+
+  [success] turns=1  tool calls=0  cost=$0.1369  model=claude-haiku-5-5,claude-opus-5-5
+
+### FULL RESTART again.
+
+================================================================
+[23:30:14Z] $ python -m expense_app ask CLM-3002 Mei has confirmed to me by phone that Raj Patel left before the food was served, so only 3 people ate. Please update the decision and the reply.
+================================================================
+Resuming the conversation for CLM-3002 (session a562e3c8...)
+
+>>> Mei has confirmed to me by phone that Raj Patel left before the food was served, so only 3 people ate. Please update the decision and the reply.
+    -> [claims] get_saved_decision({"claim_id": "CLM-3002"})
+    -> [expense] calculate_reimbursable({"claim_id": "CLM-3002", "rule": "meal", "attendees": 3, "excluded_amount": 96})
+    -> [expense] check_monthly_cap({"claim_id": "CLM-3002", "amount_usd": 225})
+    -> [expense] save_decision({"claim_id": "CLM-3002", "decision": "approve", "approved_amount_usd": 225, "policy_refs": ["EX-201"], "fla...)
+
+<<< I've updated the decision to approve **$225.00** instead of $300.00, and the reply now uses that amount. It's saved as revision 2.
+    
+    **Recalculation (meal rule, now 3 people):**
+    - $412.50 claimed minus $96.00 of alcohol = $316.50
+    - Meal limit: 3 people × $75 = $225.00, so the amount is capped at **$225.00**
+    - Monthly cap: $3,100 already approved this month plus $225 = $3,325, which is within her $4,000 cap
+    
+    **Changes in the saved decision:**
+    - **Amount:** $225.00 (was $300.00).
+    - **Flags and policy refs:** no change. The flags are still `alcohol_excluded` and `over_limit`, and EX-201 is still the only policy ref.
+    - **Reply:** it thanks Mei for confirming by phone that 3 people, including her, ate the meal. It explains the alcohol removal and the 3 × $75 limit, and says I've recommended $225.00 with a finance reviewer making the final decision. I left out Raj Patel's name and that he left early, because the reply rules say not to mention another employee.
+    - **Reviewer notes:** they record that her phone confirmation, as you reported it, is the reason for the change. They also note that revision 1 recommended $300.00 for 4 attendees.
+
+  [success] turns=5  tool calls=4  cost=$0.2019  model=claude-haiku-5-5,claude-opus-5-5
+  Decision updated: revision 1 -> 2
+
+  Claim CLM-3002  -  revision 2  -  saved 2026-11-27T23:30:28Z
+  decision            : approve
+  approved_amount_usd : 225.00
+  policy_refs         : EX-201
+  flags               : alcohol_excluded, over_limit
+  escalate_to         : none
+  reviewer notes      : Revision 2: the finance reviewer reported that Mei confirmed by phone that one of the 4 named attendees left before the food was served, so only 3 people ate. Meal limit recalculated for 3 attendees. Settled at step 8 (approve). Internal team meal (release celebration), not prohibited. No duplicate or split (find_related_claims). Filed 3 days after expense, not late. Receipt attached, attendees named, business purpose given, alcohol itemised ($96.00). Step 6 (meal rule): $412.50 USD - $96.00 alcohol = $316.50; cap 3 x $75 = $225.00 -> reimbursable $225.00 (over_limit). Monthly cap: MTD $3,100 + $225 = $3,325 <= $4,000 (L3). No currency conversion (USD). No instruction-like text. Revision 1 had recommended $300.00 for 4 attendees.
+
+  ---- draft reply to the employee (not sent) ----
+  | Hi Mei,
+  | 
+  | Thank you for your claim for the team dinner at Trattoria Sole on 27 February, and for confirming by phone that 3 people, including you, ate at the dinner. Alcohol is not covered by the expense policy, so the $96.00 of wine and cocktails itemised on the receipt has been taken out, leaving $316.50. The policy limit for a business meal is $75 per person, which for 3 people comes to $225.00.
+  | 
+  | I have recommended $225.00 for this claim. A finance reviewer will make the final decision.
+  | 
+  | Finance Operations
+
+
+### Revision history for CLM-3002 (outbox/CLM-3002.history.jsonl):
+revision 1 2026-11-27T23:24:40Z approve 300.0 ['alcohol_excluded', 'over_limit']
+revision 2 2026-11-27T23:30:28Z approve 225.0 ['alcohol_excluded', 'over_limit']

@@ -1,0 +1,20 @@
+{
+  "claim_id": "CLM-3006",
+  "decision": "needs_info",
+  "approved_amount_usd": 0.0,
+  "policy_refs": [
+    "EX-204"
+  ],
+  "flags": [
+    "missing_receipt"
+  ],
+  "reply_to_employee": "Hi Omar,\n\nThank you for submitting your claim for the Uber ride from the airport to the client site in Austin on 24 February 2026.\n\nWe can't review it yet because there is no receipt attached. Our policy requires a receipt for any item of $25 or more, and this ride was $42.00.\n\nPlease send:\n- The Uber receipt for this ride, showing the vendor (Uber), the date (24 February 2026) and the amount ($42.00). You can download it from the Uber app or website under \"Your Trips\", or find it in the email Uber sent when the ride ended.\n\nOnce we have the receipt, we will continue the review and a finance reviewer will make the final decision.\n\nFinance Operations",
+  "escalate_to": "none",
+  "escalation_reason": "",
+  "reimbursable_before_cap_usd": null,
+  "reviewer_notes": "Employee found: Omar Haddad, E-106, L2, cap $2,500, MTD $900, no pre-approvals. Check 1: not prohibited (business ground transport, airport to client site). Check 2: no duplicates. Check 3: filed 6 days after the expense, within the 60-day limit. Check 4: no split (only claim at Uber that day, $42.00). Check 5 SETTLES IT: $42.00 USD item is at or above the $25 receipt threshold (EX-204) and the receipt is missing -> needs_info. No instruction-like text. Steps 6-7 not reached.",
+  "employee": "Omar Haddad",
+  "model": "claude-opus-5-5",
+  "saved_at": "2026-11-27T23:26:12Z",
+  "revision": 1
+}

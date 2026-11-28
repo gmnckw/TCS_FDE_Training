@@ -1,0 +1,23 @@
+{
+  "claim_id": "CLM-3003",
+  "decision": "escalate",
+  "approved_amount_usd": 0.0,
+  "policy_refs": [
+    "EX-202",
+    "EX-205",
+    "EX-206"
+  ],
+  "flags": [
+    "monthly_cap_exceeded",
+    "over_limit"
+  ],
+  "reply_to_employee": "Hi Asha,\n\nThank you for your claim for 3 nights at The Strand Hotel, London (14 to 17 February). The folio is attached and the claim was filed on time.\n\nLondon is a high-cost city, so the hotel limit is $320 per night, which comes to $960.00 for 3 nights. Your stay converts to $1,033.50, so the reimbursable amount is $960.00.\n\nAdding this amount would take you over your monthly reimbursement cap, so the claim has been passed to your manager to decide. You don't need to do anything right now. After your manager decides, a finance reviewer will make the final decision.\n\nFinance Operations",
+  "escalate_to": "manager",
+  "escalation_reason": "Reimbursable $960.00 would take month-to-date $1,980.00 to $2,940.00, over the $2,500 L2 monthly cap.",
+  "reimbursable_before_cap_usd": 960,
+  "reviewer_notes": "Settled at check 7 (monthly cap). Checks 1-5 passed: hotel stay is not a prohibited item; no duplicate; filed 13 days after the expense date (not late); no split; folio attached, no pre-approval needed. Step 6: GBP 795.00 = $1,033.50 (3 nights, $344.50/night); London high-cost limit $320 x 3 = $960.00 -> reimbursable $960.00 (over_limit, $73.50 removed). Step 7: MTD $1,980 + $960 = $2,940 > $2,500 cap (headroom $520) -> escalate to manager. No instruction-like text in the claim.",
+  "employee": "Asha Verma",
+  "model": "claude-opus-5-5",
+  "saved_at": "2026-11-27T23:25:07Z",
+  "revision": 1
+}

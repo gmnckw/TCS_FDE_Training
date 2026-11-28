@@ -1,0 +1,20 @@
+{
+  "claim_id": "CLM-3009",
+  "decision": "escalate",
+  "approved_amount_usd": 0.0,
+  "policy_refs": [
+    "EX-204"
+  ],
+  "flags": [
+    "late_submission"
+  ],
+  "reply_to_employee": "Hi Daniel,\n\nThank you for your claim for airport parking during your Denver trip. Our policy asks for claims to be submitted within 60 days of the expense date. This expense is dated 20 November 2025 and the claim was submitted on 2 March 2026, which is 102 days later.\n\nBecause it is past that deadline, I can't recommend approving or rejecting it myself. I have passed it to the finance controller, who will decide whether an exception can be made. You don't need to do anything right now. If the finance controller needs more information, they will contact you.\n\nFinance Operations",
+  "escalate_to": "finance-controller",
+  "escalation_reason": "Late claim: submitted 102 days after the expense date (limit 60, EX-204); finance-controller to decide on an exception.",
+  "reimbursable_before_cap_usd": null,
+  "reviewer_notes": "Check 1 (prohibited): airport parking for a business trip, not a fine or penalty, so not prohibited. Check 2 (duplicate): find_related_claims found no duplicates. Check 3 (late filing): SETTLED. expense_date 2025-11-20, submitted 2026-03-02, 102 days > 60-day limit (EX-204), so escalate to finance-controller. Later checks not applied. For reference only: claim is USD 96.00 for 4 days of parking, receipt attached, employee E-102 (L1, MTD $400 / cap $1,500).",
+  "employee": "Daniel Okafor",
+  "model": "claude-opus-5-5",
+  "saved_at": "2026-11-27T23:27:09Z",
+  "revision": 1
+}
